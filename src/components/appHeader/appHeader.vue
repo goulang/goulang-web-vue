@@ -1,27 +1,25 @@
 <template>
-  <div class="app-header">
-    <Row class="col-header" type="flex" justify="center">
-      <Col offset="2" span="1" class="app-logo">
-      <img src="@/assets/imgs/logo.jpg" class="app-logo-img" alt="" @click="goulang()">
-      <span class="login-span login-span-inner"></span>
-      <span class="login-span login-span-out"></span>
-      </Col>
-      <Col span="9" class="app-nav-col">
-      <nav class="app-nav">
-        <ul class="app-nav-box clearfix">
-          <li class="app-nav-item" :class="{'current-nav':index==tabIndex}" v-for="(item,index) of tabJson" :key="index" @click="showContent(item,index)">{{item.title}}</li>
-        </ul>
-      </nav>
-      </Col>
-      <!-- this is goulang's search,maybe you can find something -->
-      <Col class="search-box" span="5">
-      <Input placeholder="搜索Goulang..." class="search-ipt">
-      <Icon type="md-search" slot="append" class="search-btn" />
-      </Input>
-      </Col>
-      <Col span="5" class="app-user-box">
-      <Button type="primary" icon="md-paper-plane" shape="circle" class="sign-in" @click="showContent('login')">登陆</Button>
-      <Button icon="md-add" shape="circle" class="sign-up" @click="showContent('register')">注册</Button>
+  <div class="gl-header">
+    <Row class="header-main" type="flex" justify="center">
+      <Col span="13">
+        <Col offset="2" span="1" class="gl-logo">
+          <img src="@/assets/imgs/logo.jpg" class="gl-logo-img" alt="gl-logo" @click="goulang()">
+        </Col>
+        <Col span="10" class="gl-nav-col">
+          <nav class="gl-nav">
+            <ul class="gl-nav-box clearfix">
+              <li class="gl-nav-item" :class="{'current-nav':index==tabIndex}" v-for="(item,index) of tabJson" :key="index"><span @click="showContent(item,index)">{{item.title}}</span></li>
+            </ul>
+          </nav>
+        </Col>
+        <!-- this is goulang's search,maybe you can find something -->
+        <Col class="search-box" span="8">
+          <Input search placeholder="搜索 GouLang..." class="search-ipt" />
+        </Col>
+        <Col span="4" class="gl-user-box">
+        <Button type="primary" icon="md-paper-plane" shape="circle" class="sign-in" @click="showContent('login')">登陆</Button>
+        <Button type="dashed" icon="md-add" shape="circle" class="sign-up" @click="showContent('register')">注册</Button>
+        </Col>
       </Col>
     </Row>
   </div>
@@ -112,20 +110,21 @@ export default class Appheader extends Vue {
 }
 </script>
 <style scoped lang="scss">
-.app-header {
+.gl-header {
   height: 60px;
   width: 100%;
   min-width: 980px;
-  background-color: #ffffff;
-  box-shadow: 0 0 11px 0 #454545;
-  .col-header {
-    .app-logo {
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
+  .header-main {
+    .gl-logo {
       width: 50px;
       height: 50px;
       margin-top: 5px;
       margin-right: 5px;
       position: relative;
-      .app-logo-img {
+      margin-left:0;
+      .gl-logo-img {
         position: absolute;
         z-index: 5;
         left: 0;
@@ -133,15 +132,8 @@ export default class Appheader extends Vue {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-
         cursor: pointer;
         transition: all 1.5s;
-
-        &:hover {
-          top: 10px;
-          border: 1px solid #999;
-          transform: rotate(360deg) scale(1.5);
-        }
       }
       @keyframes goulang {
         0% {
@@ -172,24 +164,92 @@ export default class Appheader extends Vue {
         -webkit-animation-delay: 2s;
       }
     }
-    .app-nav-col {
-      .app-nav {
-        .app-nav-box {
-          .app-nav-item {
-            padding-left: 2vw;
-            padding-right: 2vw;
+    .gl-nav-col {
+      .gl-nav {
+        .gl-nav-box {
+          .gl-nav-item {
             float: left;
             height: 60px;
             line-height: 60px;
-            cursor: pointer;
-            &:hover {
-              background-color: #ccc;
-              color: #ffffff;
+            color: #333;
+            font-size: 15px;
+            span {
+              display: inline-block;
+              margin: 0 15px;
+              text-align: center;
+              position: relative;
+              color: #333;
+              cursor: pointer;
+              transition: color .2s linear, background-color .2s linear, border .2s linear, box-shadow .2s linear;
+              &:hover {
+                color: #1396FF;
+              }
+              &::after{
+                background-color: #1396FF;
+                content: "";
+                height: 3px;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 0;
+                filter: alpha(opacity=0);
+                -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+                -webkit-opacity: 0;
+                -khtml-opacity: 0;
+                -moz-opacity: 0;
+                -ms-opacity: 0;
+                -o-opacity: 0;
+                opacity: 0;
+                -webkit-transition: all 300ms linear 0ms;
+                -khtml-transition: all 300ms linear 0ms;
+                -moz-transition: all 300ms linear 0ms;
+                -ms-transition: all 300ms linear 0ms;
+                -o-transition: all 300ms linear 0ms;
+                transition: all 300ms linear 0ms;
+              }
+              &:hover:after{
+                width: 100%;
+                filter: alpha(opacity=100);
+                -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+                -webkit-opacity: 1;
+                -khtml-opacity: 1;
+                -moz-opacity: 1;
+                -ms-opacity: 1;
+                -o-opacity: 1;
+                opacity: 1;
+                -webkit-transition: all 300ms linear 0ms;
+                -khtml-transition: all 300ms linear 0ms;
+                -moz-transition: all 300ms linear 0ms;
+                -ms-transition: all 300ms linear 0ms;
+                -o-transition: all 300ms linear 0ms;
+                transition: all 300ms linear 0ms;
+              }
             }
           }
           .current-nav {
-            background-color: #ccc;
-            color: #ffffff;
+            span{
+              color: #1396FF;
+              &:after{
+                width: 100%;
+                filter: alpha(opacity=100);
+                -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+                -webkit-opacity: 1;
+                -khtml-opacity: 1;
+                -moz-opacity: 1;
+                -ms-opacity: 1;
+                -o-opacity: 1;
+                opacity: 1;
+                -webkit-transition: all 300ms linear 0ms;
+                -khtml-transition: all 300ms linear 0ms;
+                -moz-transition: all 300ms linear 0ms;
+                -ms-transition: all 300ms linear 0ms;
+                -o-transition: all 300ms linear 0ms;
+                transition: all 300ms linear 0ms;
+              }
+            }
+            &:hover{
+              color: #1396FF;
+            }
           }
         }
       }
@@ -198,14 +258,15 @@ export default class Appheader extends Vue {
       .search-ipt {
         margin-top: 12px;
         width: 240px;
+        float: right;
         .search-btn {
           cursor: pointer;
         }
       }
     }
-    .app-user-box {
+    .gl-user-box {
       margin-top: 12px;
-
+      float: right;
       .sign-in {
         margin-right: 5px;
       }
