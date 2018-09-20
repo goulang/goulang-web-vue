@@ -1,11 +1,11 @@
 <template>
   <div class="gl-header">
-    <Row class="header-main" type="flex" justify="center">
-      <Col span="13">
+    <Row type="flex">
+      <Col span="13" class="header-main">
         <Col offset="2" span="1" class="gl-logo">
           <img src="@/assets/imgs/logo.jpg" class="gl-logo-img" alt="gl-logo" @click="goulang()">
         </Col>
-        <Col span="10" class="gl-nav-col">
+        <Col span="12" class="gl-nav-col">
           <nav class="gl-nav">
             <ul class="gl-nav-box clearfix">
               <li class="gl-nav-item" :class="{'current-nav':index==tabIndex}" v-for="(item,index) of tabJson" :key="index"><span @click="showContent(item,index)">{{item.title}}</span></li>
@@ -13,7 +13,7 @@
           </nav>
         </Col>
         <!-- this is goulang's search,maybe you can find something -->
-        <Col class="search-box" span="8">
+        <Col class="search-box" span="6">
           <Input search placeholder="搜索 GouLang..." class="search-ipt" />
         </Col>
         <Col span="4" class="gl-user-box">
@@ -117,6 +117,8 @@ export default class Appheader extends Vue {
   background-color: #fff;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
   .header-main {
+    width:1040px;
+    margin:auto;
     .gl-logo {
       width: 50px;
       height: 50px;
