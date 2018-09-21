@@ -8,7 +8,12 @@
         <Col span="12" class="gl-nav-col">
           <nav class="gl-nav">
             <ul class="gl-nav-box clearfix">
-              <li class="gl-nav-item" :class="{'current-nav':index==tabIndex}" v-for="(item,index) of tabJson" :key="index"><span @click="showContent(item,index)">{{item.title}}</span></li>
+              <li class="gl-nav-item" 
+              :class="{'current-nav':index==tabIndex}" 
+              v-for="(item,index) of tabJson" 
+              :key="index">
+                <span @click="showContent(item,index)">{{item.title}}</span>
+              </li>
             </ul>
           </nav>
         </Col>

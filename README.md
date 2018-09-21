@@ -1,6 +1,6 @@
-# 够浪社区 Vue+TypeScript+sass
+# 够浪社区 Vue+TypeScript+Sass
 ## 技术栈
-Vue + TypeScript + sass
+Vue + TypeScript + Sass
 ## 项目运行,使用方法
 * git clone git@github.com:goulang/goulang-web-vue.git
 * cd goulang-web-vue
