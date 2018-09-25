@@ -19,7 +19,4 @@ export const tabJson:Array<object>
     {
         title:"够浪周刊",name:"weekly",chilren:[]
     },
-    {
-        title:"Github",name:"github",chilren:[]
-    },
 ];

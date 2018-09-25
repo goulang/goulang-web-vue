@@ -9,9 +9,8 @@ export default new Vuex.Store({
   },
   mutations: {
     //切换关注的状态
-    // handleAttention: state => !state.attention
-    handleAttention(state){
-      state.attention = !state.attention;
+    handleAttention: (state: any, obj: any) => {
+      state.attention = obj.attention
     },
   },
   actions: {

@@ -1,30 +1,30 @@
 <template>
   <div class="gl-header">
-    <Row type="flex">
-      <Col span="13" class="header-main">
-        <Col offset="2" span="1" class="gl-logo">
-          <img src="@/assets/imgs/logo.jpg" class="gl-logo-img" alt="gl-logo" @click="goulang()">
-        </Col>
-        <Col span="12" class="gl-nav-col">
-          <nav class="gl-nav">
-            <ul class="gl-nav-box clearfix">
-              <li class="gl-nav-item" 
-              :class="{'current-nav':index==tabIndex}" 
-              v-for="(item,index) of tabJson" 
-              :key="index">
-                <span @click="showContent(item,index)">{{item.title}}</span>
-              </li>
-            </ul>
-          </nav>
-        </Col>
-        <!-- this is goulang's search,maybe you can find something -->
-        <Col class="search-box" span="6">
-          <Input search placeholder="搜索 GouLang..." class="search-ipt" />
-        </Col>
-        <Col span="4" class="gl-user-box">
+    <Row type="flex" class="header-main">
+      <Col offset="2" span="2" class="gl-logo clearfix">
+        <img src="@/assets/imgs/logo.jpg" class="gl-logo-img" alt="gl-logo" @click="goulang()">
+      </Col>
+      <Col span="10" class="gl-nav-col">
+        <nav class="gl-nav">
+          <ul class="gl-nav-box clearfix">
+            <li class="gl-nav-item" 
+            :class="{'current-nav':index==tabIndex}" 
+            v-for="(item,index) of tabJson" 
+            :key="index">
+              <span @click="showContent(item,index)">{{item.title}}</span>
+            </li>
+          </ul>
+        </nav>
+      </Col>
+      <!-- this is goulang's search,maybe you can find something -->
+      <Col class="search-box clearfix" span="6">
+        <Input search placeholder="搜索 GouLang..." class="search-ipt" />
+      </Col>
+      <Col span="6" class="gl-user-box clearfix">
+      <div class="login-btn">
         <Button type="primary" icon="md-paper-plane" shape="circle" class="sign-in" @click="showContent('login')">登陆</Button>
         <Button type="dashed" icon="md-add" shape="circle" class="sign-up" @click="showContent('register')">注册</Button>
-        </Col>
+      </div>
       </Col>
     </Row>
   </div>
@@ -265,7 +265,6 @@ export default class Appheader extends Vue {
       .search-ipt {
         margin-top: 12px;
         width: 240px;
-        float: right;
         .search-btn {
           cursor: pointer;
         }
@@ -273,7 +272,8 @@ export default class Appheader extends Vue {
     }
     .gl-user-box {
       margin-top: 12px;
-      float: right;
+      float: left;
+      margin-left:31.6px;
       .sign-in {
         margin-right: 5px;
       }

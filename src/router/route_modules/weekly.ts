@@ -1,4 +1,4 @@
-const Weekly = () => import(/* webpackChunkName: "glweekly" */ '@/pages/homeModule/weekly.vue')
+const Weekly = () => import(/* webpackChunkName: "glweekly" */ '@/pages/weeklyModule/weekly.vue')
 const WeeklyRouteList = [
     {
         // 这里的path使用了 根路径

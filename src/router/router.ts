@@ -14,6 +14,8 @@ import ResourceRouteList from "./route_modules/resource";
 import RecruitRouteList from "./route_modules/recruit";
 // 合作的模块
 import PartnerRouteList from "./route_modules/partner";
+// 周刊模块
+import WeeklyRouteList from "./route_modules/weekly";
 
 // 登陆
 import LoginRouteList from "./route_modules/login";
@@ -24,6 +26,7 @@ const IndexChildrenRoutes = [...HomeRouteList,
 ...ResourceRouteList,
 ...RecruitRouteList,
 ...PartnerRouteList,
+...WeeklyRouteList,
 ...LoginRouteList,
 ...RegisterRouteList]
 Vue.use(Router)
@@ -35,7 +38,7 @@ export default new Router({
    *   }, 
    * 
    */
-  // mode: 'history',
+  mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
