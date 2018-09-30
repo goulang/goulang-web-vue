@@ -2,7 +2,8 @@
   <div class="gl-home">
     <Row type="flex" class="code-row-bg">
       <section>
-        <article class="clearfix">
+        <ArticleList />
+        <!-- <article class="clearfix">
           <Col span="24">
             <ol id="posts">
               <li class="post-container" v-for="(item,idx) of articleJson">
@@ -15,7 +16,7 @@
                           <span>{{item.time}}</span>
                         </div>
                         <div class="post-author-attention">
-                          <a class="attention" @click="handleAttention(item,idx)" title="关注 goulang">
+                          <a class="attention" @click="handleAttention(item,idx)" title="item.name">
                             {{item.attention?'关注':'取消关注'}}
                           </a>
                         </div>
@@ -72,7 +73,7 @@
               </li>
             </ol>
           </Col>
-        </article>
+        </article> -->
         <aside class="clearfix">
           <Col span="24">侧边栏</Col>
         </aside>
@@ -89,30 +90,30 @@
 </template>
 
 <script lang="ts">
-import {articleJson, asideJson, footerJson} from "@/assets/json/homeJson";
+import {asideJson, footerJson} from "@/assets/json/homeJson";
+import ArticleList from "./articleList.vue";
 import { Component, Vue } from "vue-property-decorator";
 import store from '@/vuex/store';
 import {mapMutations} from 'vuex';
-@Component
+@Component({
+  components:{
+    /**
+   * ArticleList  文章列表
+   * asideList    侧 边 栏
+   * footerList   页面底部
+   */
+    ArticleList
+  }
+})
 export default class HomePage extends Vue {
   constructor() {
     super();
   }
-  /**
-   * articleJson  文章列表
-   * asideJson    侧 边 栏
-   * footerJson   页面底部
-   */
-  articleJson: Array<object> = articleJson;
   asideJson: Array<object> = asideJson;
   footerJson: Array<object> = footerJson;
 
   created(): void {
     return this.$store.state.attention
-  }
-  handleAttention (obj:any, idx:number): void {
-    this.articleJson.splice(idx, 1, Object.assign(obj, { attention: !obj.attention }));
-    store.commit('handleAttention', obj);
   }
 }
 
