@@ -1,4 +1,5 @@
 <template>
+  <Affix>
   <div class="gl-header">
     <Row type="flex" class="header-main">
       <Col offset="2" span="2" class="gl-logo clearfix">
@@ -28,6 +29,7 @@
       </Col>
     </Row>
   </div>
+  </Affix>
 </template>
 <script lang="ts">
 import { tabJson } from "@/assets/json/tabJson";
@@ -274,6 +276,7 @@ export default class Appheader extends Vue {
       margin-top: 12px;
       float: left;
       margin-left:31.6px;
+      text-align: right;
       .sign-in {
         margin-right: 5px;
       }

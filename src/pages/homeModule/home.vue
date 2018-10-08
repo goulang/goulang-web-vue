@@ -3,84 +3,11 @@
     <Row type="flex" class="code-row-bg">
       <section>
         <ArticleList />
-        <!-- <article class="clearfix">
-          <Col span="24">
-            <ol id="posts">
-              <li class="post-container" v-for="(item,idx) of articleJson">
-                <div class="post-full">
-                  <div class="post-wrapper">
-                    <div class="post-header">
-                      <div class="post-author-info clearfix">
-                        <div class="post-info-name clearfix">
-                          <a href="">{{item.name}}</a>
-                          <span>{{item.time}}</span>
-                        </div>
-                        <div class="post-author-attention">
-                          <a class="attention" @click="handleAttention(item,idx)" title="item.name">
-                            {{item.attention?'关注':'取消关注'}}
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="post-content clearfix">
-                      <div class="post-picture">
-                        <a href="">
-                          <img :src="item.img" width="100%" height="100%" alt="">
-                        </a>
-                      </div>
-                      <div class="post-list">
-                        <div class="post-list-item">
-                          <div class="post-list-item-title">
-                            <h3><a href="#">{{item.title}}</a></h3>
-                          </div>
-                          <div class="post-list-item-content">
-                            {{item.content}}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="post-footer clearfix">
-                      <div class="post-heat">
-                        <div class="post-heat-count">
-                          <span class="heat-link-current" title="12,345喜欢">
-                            12,345喜欢
-                          </span>
-                        </div>
-                      </div>
-                      <div class="post-controls">
-                        <div class="post-control-inner">
-                          <div class="post-control share">
-                            <Icon type="ios-share-alt-outline" title="分享" />
-                          </div>
-                          <div class="post-control reply">
-                            <Icon type="ios-text-outline" title="回复"/>
-                          </div>
-                          <div class="post-control like">
-                            <Icon type="ios-heart-outline" title="喜欢" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="post-avatar post-avatar-sticky">
-                    <div class="post-avatar-wrapper">
-                      <a class="post-avatar-img post-avatar-link" href="">
-                        <img :src="item.user_avatar" width="50" height="50" alt="">
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ol>
-          </Col>
-        </article> -->
-        <aside class="clearfix">
-          <Col span="24">侧边栏</Col>
-        </aside>
+        <AsideBar />
       </section>
       <Col id="sidebar-footer-nav" class="pinned-sidebar-footer" span="24">
         <ul class="sidebar-nav visible clearfix">
-          <li v-for="(item,idx) of footerJson" :v-for="idx" class="sidebar-nav-item clearfix">
+          <li v-for="(item,idx) of footerJson" :key="idx" class="sidebar-nav-item clearfix">
             <a href="" class="sidebar-link">{{item.title}}</a>
           </li>
         </ul>
@@ -92,6 +19,7 @@
 <script lang="ts">
 import {asideJson, footerJson} from "@/assets/json/homeJson";
 import ArticleList from "./articleList.vue";
+import AsideBar from "./asideBar.vue";
 import { Component, Vue } from "vue-property-decorator";
 import store from '@/vuex/store';
 import {mapMutations} from 'vuex';
@@ -99,10 +27,11 @@ import {mapMutations} from 'vuex';
   components:{
     /**
    * ArticleList  文章列表
-   * asideList    侧 边 栏
+   * AsideBar    侧 边 栏
    * footerList   页面底部
    */
     ArticleList
+    ,AsideBar
   }
 })
 export default class HomePage extends Vue {
@@ -354,7 +283,7 @@ export default class HomePage extends Vue {
       }
     }
     aside{
-      width:25%;
+      width:28%;
       float: right;
     }
   }

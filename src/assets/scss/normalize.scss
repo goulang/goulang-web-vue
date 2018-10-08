@@ -445,3 +445,23 @@
   [hidden] {
     display: none;
   }
+
+
+  /**
+  * 限制文本行高
+  */
+  .truncate-lines{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+  .truncate-lines-1{
+    -webkit-line-clamp: 1;
+  }
+  .truncate-lines-2{
+    -webkit-line-clamp: 2;
+  }
+  .truncate-lines-3{
+    -webkit-line-clamp: 3;
+  }
