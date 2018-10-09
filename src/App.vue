@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <!-- 这里不能引入组件 -->
-     <router-view/>
+    <!-- 全局 -->
+    <div class="global-container">
+
+    </div>
+    <router-view/>
   </div>
 </template>
 <script lang="ts">

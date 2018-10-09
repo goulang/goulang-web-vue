@@ -69,6 +69,7 @@ export default class Appheader extends Vue {
     let name: any = sessionStorage.getItem("name")
       ? sessionStorage.getItem("name")
       : "home".toString();
+    console.log(name)
     name = name.toString();
     let currentIndex: any = sessionStorage.getItem("currentIndex")
       ? Number(sessionStorage.getItem("currentIndex"))
@@ -108,9 +109,6 @@ export default class Appheader extends Vue {
   }
   //   点击首页的logo
   goulang() {
-    //  这两行保存不需要了
-    // sessionStorage.removeItem("currentIndex");
-    // sessionStorage.removeItem("name");
     this.navStyle(0);
     this.pushRouter("home");
   }
