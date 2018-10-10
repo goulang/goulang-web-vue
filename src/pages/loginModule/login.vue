@@ -4,6 +4,9 @@
       <div class="mascot-box">
         <img width="100%" src="@/assets/imgs/login.png" alt="">
       </div>
+      <div class="login-title-box">
+        <h3>登录<Icon type="ios-close" /></h3>
+      </div>
       <FormItem prop="username">
         <Input type="text" placeholder="请输入手机号或邮箱" v-model="formCustom.username"></Input>
       </FormItem>
@@ -15,7 +18,7 @@
       </FormItem>
       <FormItem :style="{marginBottom:'0'}">
         <div class="register">
-          <i>没有账号？</i><a>注册</a>
+          <em>没有账号？</em><a>注册</a>
         </div>
         <div class="forget-pwd">
           <a>忘记密码</a>
@@ -43,58 +46,40 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-@Component
+@Component({
+  
+})
 export default class LoginPage extends Vue {
+  constructor() {
+    super();
+  }
   data (){
-    // const validateUserName = (rule:any, value:any, callback:any) => {
-    //   if (value === '') {
-    //     callback(new Error('请输入手机号或邮箱'));
-    //   } else {
-    //     callback();
-    //   }
-    // };
-    // const validatepwd = (rule:any, value:any, callback:any) => {
-    //   if (value === '') {
-    //     callback(new Error('请输入密码'));
-    //   } else {
-    //     callback();
-    //   }
-    // };
     return {
       formCustom: {
         username: '',   //用户名
         pwd: '',      //密码
       },
       upLoading: false,
-      // ruleCustom: {
-      //   //验证规则
-      //   username: [
-      //     { validator: validateUserName, trigger: 'blur' }
-      //   ],
-      //   pwd: [
-      //     { validator: validatepwd, trigger: 'blur' }
-      //   ],
-      // }
     }
   }
   handleSubmit (name:string) {
-    this.upLoading = true;
-    if(this.formCustom.username != "" && this.formCustom.pwd != ""){
+    this.$data.upLoading = true;
+    if(this.$data.formCustom.username != "" && this.$data.formCustom.pwd != ""){
       this.$Message.success("登录成功!");
-      this.upLoading = false;
+      this.$data.upLoading = false;
       return
     }
-    if (this.formCustom.username == "") {
+    if (this.$data.formCustom.username == "") {
       this.$Message.error("请输入手机号或邮箱!");
-      this.upLoading = false;
+      this.$data.upLoading = false;
       return
-    } else if(this.formCustom.pwd == "") {
+    } else if(this.$data.formCustom.pwd == "") {
       this.$Message.error("请输入密码!");
-    this.upLoading = false;
+    this.$data.upLoading = false;
       return
     } else {
       this.$Message.error('登录失败!');
-      this.upLoading = false;
+      this.$data.upLoading = false;
       return
     }
   }
@@ -103,6 +88,9 @@ export default class LoginPage extends Vue {
 <style lang="scss" scoped>
 em,i{
   color: #999;
+}
+i{
+  font-size: 28px;
 }
 .gl-login {
   position: absolute;
@@ -117,6 +105,20 @@ em,i{
 // 囊地鼠图片
 .mascot-box{
   margin-top: -16px;
+}
+.login-title-box{
+  h3{
+    i{
+      line-height: 32px;
+      font-weight: bold;
+      cursor: pointer;
+      float: right;
+      transition: color .2s ease;
+      &:hover{
+        color: #000;
+      }
+    }
+  }
 }
 .text-center{
   text-align: center;
@@ -136,9 +138,11 @@ form{
   .other-login-mode{
     margin-bottom: 10px; 
     color: #666;
+    span{
+      font-size: 14px;
+    }
   }
   .oauth {
-    font-size: 28px;
     i{
       background-color: #f5f5f5;
       border-radius:50%;

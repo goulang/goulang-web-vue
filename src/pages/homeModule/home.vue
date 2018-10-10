@@ -27,7 +27,7 @@ import {mapMutations} from 'vuex';
   components:{
     /**
    * ArticleList  文章列表
-   * AsideBar    侧 边 栏
+   * AsideBar     侧 边 栏
    * footerList   页面底部
    */
     ArticleList
