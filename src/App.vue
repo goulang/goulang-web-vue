@@ -6,12 +6,18 @@
 
     </div>
     <router-view/>
+    <Login></Login>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 // 这里一定要写上vue后缀名
-@Component
+import Login from "@/pages/loginModule/login.vue"
+@Component({
+  components:{
+    Login
+  }
+})
 export default class App extends Vue {}
 </script>
 
