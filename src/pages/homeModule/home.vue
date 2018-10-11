@@ -21,9 +21,8 @@ import {asideJson, footerJson} from "@/assets/json/homeJson";
 import ArticleList from "./articleList.vue";
 import AsideBar from "./asideBar.vue";
 import { Component, Vue } from "vue-property-decorator";
-// 不必要的,已经全局引入了
-// import store from '@/vuex/index';
-// import {mapMutations} from 'vuex';
+import store from '@/vuex/store';
+import {mapMutations} from 'vuex';
 @Component({
   components:{
     /**
@@ -43,7 +42,7 @@ export default class HomePage extends Vue {
   footerJson: Array<object> = footerJson;
 
   created(): void {
-    return this.$store.state.home.attention
+    return this.$store.state.attention
   }
 }
 

@@ -79,7 +79,7 @@
 <script lang="ts">
 import {articleJson} from "@/assets/json/homeJson";
 import { Component, Vue } from "vue-property-decorator";
-import store from '@/vuex/index';
+import store from '@/vuex/store';
 import {mapMutations} from 'vuex';
 @Component
 export default class ArticlePage extends Vue {
