@@ -1,6 +1,6 @@
-// homeStore
+// HomeStore
 export default {
-    namespaced:true,
+    namespaced: true,
     state: {
         attention: true,
     },

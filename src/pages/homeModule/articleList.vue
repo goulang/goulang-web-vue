@@ -1,86 +1,86 @@
 <template>
   <article class="clearfix">
     <Col span="24">
-      <ol id="posts">
-        <li class="post-container" v-for="(item,idx) of listData">
-          <div class="post-full">
-            <div class="post-wrapper">
-              <div class="post-header">
-                <div class="post-author-info clearfix">
-                  <div class="post-info-name clearfix">
-                    <a href="">{{item.name}}</a>
-                    <time>{{item.time}}</time>
-                  </div>
-                  <div class="post-author-attention">
-                    <a class="attention" @click="handleAttention(item,idx)" title="item.name">
-                      {{item.attention?'关注':'取消关注'}}
-                    </a>
-                  </div>
+    <ol id="posts">
+      <li class="post-container" v-for="(item,idx) of listData">
+        <div class="post-full">
+          <div class="post-wrapper">
+            <div class="post-header">
+              <div class="post-author-info clearfix">
+                <div class="post-info-name clearfix">
+                  <a href="">{{item.name}}</a>
+                  <time>{{item.time}}</time>
                 </div>
-              </div>
-              <div class="post-content clearfix">
-                <div class="post-picture">
-                  <a href="">
-                    <img :src="item.img" />
+                <div class="post-author-attention">
+                  <a class="attention" @click="handleAttention(item,idx)" title="item.name">
+                    {{item.attention?'关注':'取消关注'}}
                   </a>
                 </div>
-                <div class="post-list">
-                  <div class="post-list-item">
-                    <div class="post-list-item-title">
-                      <h3 v-if="item.title.length >= '55'" class="truncate-lines truncate-lines-2" dir="auto"><a :title="item.title" href="#">{{item.title}}</a></h3>
-                      <h3 v-else dir="auto"><a href="#">{{item.title}}</a></h3>
-                    </div>
-                    <div v-if="item.content.length>='110'" :title="item.content" dir="auto" class="post-list-item-content truncate-lines truncate-lines-3">
-                      {{item.content}}
-                    </div>
-                    <div v-else dir="auto" class="post-list-item-content truncate-lines truncate-lines-3">
-                      {{item.content}}
-                    </div>
-                  </div>
-                </div>
               </div>
-              <div class="post-footer clearfix">
-                <div class="post-heat">
-                  <div class="post-heat-count">
-                    <span class="heat-link-current" title="12,345喜欢">
-                      12,345喜欢
-                    </span>
+            </div>
+            <div class="post-content clearfix">
+              <div class="post-picture">
+                <a href="">
+                  <img :src="item.img" />
+                </a>
+              </div>
+              <div class="post-list">
+                <div class="post-list-item">
+                  <div class="post-list-item-title">
+                    <h3 v-if="item.title.length >= '55'" class="truncate-lines truncate-lines-2" dir="auto"><a :title="item.title" href="#">{{item.title}}</a></h3>
+                    <h3 v-else dir="auto"><a href="#">{{item.title}}</a></h3>
                   </div>
-                </div>
-                <div class="post-controls">
-                  <div class="post-control-inner">
-                    <div class="post-control share">
-                      <Icon type="ios-share-alt-outline" title="分享" />
-                    </div>
-                    <div class="post-control reply">
-                      <Icon type="ios-text-outline" title="回复"/>
-                    </div>
-                    <div class="post-control like">
-                      <Icon type="ios-heart-outline" title="喜欢" />
-                    </div>
+                  <div v-if="item.content.length>='110'" :title="item.content" dir="auto" class="post-list-item-content truncate-lines truncate-lines-3">
+                    {{item.content}}
+                  </div>
+                  <div v-else dir="auto" class="post-list-item-content truncate-lines truncate-lines-3">
+                    {{item.content}}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="post-avatar post-avatar-sticky">
-              <div class="post-avatar-wrapper">
-                <a class="post-avatar-img post-avatar-link" href="">
-                  <img :src="item.user_avatar" width="50" height="50" alt="">
-                </a>
+            <div class="post-footer clearfix">
+              <div class="post-heat">
+                <div class="post-heat-count">
+                  <span class="heat-link-current" title="12,345喜欢">
+                    12,345喜欢
+                  </span>
+                </div>
+              </div>
+              <div class="post-controls">
+                <div class="post-control-inner">
+                  <div class="post-control share">
+                    <Icon type="ios-share-alt-outline" title="分享" />
+                  </div>
+                  <div class="post-control reply">
+                    <Icon type="ios-text-outline" title="回复" />
+                  </div>
+                  <div class="post-control like">
+                    <Icon type="ios-heart-outline" title="喜欢" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </li>
-      </ol>
+          <div class="post-avatar post-avatar-sticky">
+            <div class="post-avatar-wrapper">
+              <a class="post-avatar-img post-avatar-link" href="">
+                <img :src="item.user_avatar" width="50" height="50" alt="">
+              </a>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ol>
     </Col>
   </article>
 </template>
 
 <script lang="ts">
-import {articleJson} from "@/assets/json/homeJson";
+import { articleJson } from "@/assets/json/homeJson";
 import { Component, Vue } from "vue-property-decorator";
-import store from '@/vuex/index';
-import {mapMutations} from 'vuex';
+// import store from '@/vuex/index';
+// import {mapMutations} from 'vuex';
 @Component
 export default class ArticlePage extends Vue {
   constructor() {
@@ -92,48 +92,52 @@ export default class ArticlePage extends Vue {
    * footerJson   页面底部
    */
   articleJson: Array<object> = articleJson;
-  listData : Array<object> = [];
+  listData: Array<object> = [];
   maxLen: number = 10;
   minLen: number = 0;
   created(): void {
     if (articleJson.length < 10) {
-      this.maxLen = articleJson.length
+      this.maxLen = articleJson.length;
     } else {
-      this.maxLen = 10
+      this.maxLen = 10;
     }
-    this.listData = articleJson.slice(this.minLen,this.maxLen);
-    return this.$store.state.attention
+    this.listData = articleJson.slice(this.minLen, this.maxLen);
+    return this.$store.state.attention;
   }
-  handleAttention (obj:any, idx:number): void {
-    this.articleJson.splice(idx, 1, Object.assign(obj, { attention: !obj.attention }));
-    store.commit('handleAttention', obj);
+  handleAttention(obj: any, idx: number): void {
+    this.articleJson.splice(
+      idx,
+      1,
+      Object.assign(obj, { attention: !obj.attention })
+    );
+    //这里的home模块的store改写为带有命名空间的store,来自Amanda修改
+    this.$store.commit("home/handleAttention", obj);
   }
-   handleReachBottom () {
-      return new Promise(resolve => {
-          setTimeout(() => {
-            this.maxLen += this.maxLen;
-              this.listData = articleJson.slice(this.minLen,this.maxLen);
-              if (this.listData.length == articleJson.length) {
-                alert("无更多数据！")
-              }
-              resolve();
-          }, 2000);
-      });
+  handleReachBottom() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        this.maxLen += this.maxLen;
+        this.listData = articleJson.slice(this.minLen, this.maxLen);
+        if (this.listData.length == articleJson.length) {
+          alert("无更多数据！");
+        }
+        resolve();
+      }, 2000);
+    });
   }
 }
-
 </script>
 <style lang="scss" scoped>
-article{
+article {
   width: 70%;
   float: left;
   #posts {
     margin: 0 0 0 70px;
     padding: 0;
-    .post-container{
+    .post-container {
       margin: 0 0 20px 0;
     }
-    .post-full{
+    .post-full {
       width: 100%;
       font-size: 14px;
       background: #fff;
@@ -142,16 +146,16 @@ article{
       border-radius: 3px;
       position: relative;
     }
-    .post-content{
+    .post-content {
       height: 170px;
       border-top: 1px solid #e7e7e7;
       padding: 15px 15px 0;
-      .post-picture{
-        a{
+      .post-picture {
+        a {
           width: 25%;
           float: right;
           height: 150px;
-          img{
+          img {
             border-radius: 2px;
             height: 100%;
             width: 100%;
@@ -164,39 +168,38 @@ article{
           }
         }
       }
-      .post-list{
+      .post-list {
         width: calc(75% - 20px);
         height: 100%;
-        .post-list-item{
-
+        .post-list-item {
         }
       }
     }
     .post-header,
-    .post-footer{
-      padding:0 20px;
+    .post-footer {
+      padding: 0 20px;
     }
-    .post-header{
+    .post-header {
       font-size: 13px;
       margin: -3px 0 13px;
       line-height: 20px;
       height: 20px;
       vertical-align: middle;
       text-rendering: optimizeLegibility;
-      .post-author-info{
+      .post-author-info {
         max-width: 100%;
       }
-      .post-info-name{
+      .post-info-name {
         float: left;
-        max-width:430px;
+        max-width: 430px;
         color: #999;
-        a{
+        a {
           color: rgba(51, 51, 51, 1);
         }
-        time{
+        time {
           font-size: 12px;
-          &:before{
-            content: '\2022';
+          &:before {
+            content: "\2022";
             color: #999;
             margin-left: 5px;
             margin-right: 5px;
@@ -207,7 +210,7 @@ article{
         }
       }
     }
-    .post-footer{
+    .post-footer {
       display: table;
       width: 100%;
       border-spacing: 0;
@@ -218,30 +221,30 @@ article{
       border-bottom-right-radius: 6px;
       border-bottom-left-radius: 6px;
       line-height: 45px;
-      .post-heat{
+      .post-heat {
         display: table-cell;
         width: 100%;
         vertical-align: top;
-        .post-heat-count{
+        .post-heat-count {
           font-size: 13px;
           float: left;
-          .heat-link-current{
+          .heat-link-current {
             display: block;
           }
         }
       }
-      .post-controls{
+      .post-controls {
         display: table-cell;
         width: 100%;
         line-height: 0;
         vertical-align: top;
-        .post-control-inner{
+        .post-control-inner {
           height: 45px;
           font-size: 0;
           text-align: right;
           white-space: nowrap;
         }
-        .post-control{
+        .post-control {
           margin: 10px 0 10px 12px;
           display: inline-block;
           position: relative;
@@ -249,11 +252,11 @@ article{
           height: 24px;
           width: 24px;
           cursor: pointer;
-          &:first-child{
+          &:first-child {
             margin-left: 0;
           }
-          .ivu-icon{
-            &::before{
+          .ivu-icon {
+            &::before {
               font-size: 24px;
               width: 24px;
               height: 24px;
@@ -264,56 +267,56 @@ article{
         }
       }
     }
-    .post-author-attention{
+    .post-author-attention {
       float: left;
-      .attention{
+      .attention {
         color: #2d8cf0;
         margin-left: 10px;
         font-weight: 400;
         position: relative;
-        transition: width .3s .3s;
+        transition: width 0.3s 0.3s;
       }
     }
-    .post-list{
+    .post-list {
       word-break: break-word;
-      transition: opacity .2s ease;
+      transition: opacity 0.2s ease;
       opacity: 1;
-      .post-list-item{
-        .post-list-item-title{
+      .post-list-item {
+        .post-list-item-title {
           display: inline;
           font-weight: 500;
           font-size: 18px;
           line-height: 28px;
           position: relative;
           vertical-align: middle;
-          h3{
+          h3 {
             font-size: 22px;
             line-height: 1.25em;
             word-wrap: break-word;
             font-weight: 600;
           }
-          a{
-            color: rgba(51, 51, 51, .95);
-            &:hover{
+          a {
+            color: rgba(51, 51, 51, 0.95);
+            &:hover {
               text-decoration: underline;
             }
-            &:active{
-              color: rgba(51, 51, 51, .75);
+            &:active {
+              color: rgba(51, 51, 51, 0.75);
             }
-            &:visited{
-              color: rgba(51, 51, 51, .75);
+            &:visited {
+              color: rgba(51, 51, 51, 0.75);
             }
           }
         }
-        .post-list-item-content{
+        .post-list-item-content {
           color: #546673;
           word-wrap: break-word;
           margin: 15px 0;
         }
       }
     }
-    
-    .post-avatar{
+
+    .post-avatar {
       border-radius: 3px;
       background-color: #f5f5f5;
       text-decoration: none;
@@ -324,14 +327,14 @@ article{
       width: 50px;
       left: -70px;
       top: 0;
-      .post-avatar-wrapper{
+      .post-avatar-wrapper {
         position: -webkit-sticky;
         position: sticky;
         top: 69px;
         height: auto;
         width: auto;
       }
-      .post-avatar-link{
+      .post-avatar-link {
         background: #f5f5f5 50% 50% no-repeat;
         display: block;
         height: 100%;
@@ -339,7 +342,7 @@ article{
         border-radius: 4px;
         background-size: cover;
         overflow: visible;
-        img{
+        img {
           border-radius: 4px;
           -webkit-transition: all 1.5s;
           transition: all 1.5s;
@@ -350,9 +353,9 @@ article{
         }
       }
     }
-    .post-avatar-sticky{
+    .post-avatar-sticky {
       height: 100%;
-      .post-avatar-link{
+      .post-avatar-link {
         height: 50px;
         width: 50px;
       }
