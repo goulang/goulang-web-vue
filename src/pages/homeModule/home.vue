@@ -1,17 +1,20 @@
 <template>
   <div class="gl-home">
     <Row type="flex" class="code-row-bg">
-      <section>
-        <ArticleList />
-        <AsideBar />
-      </section>
       <Col id="sidebar-footer-nav" class="pinned-sidebar-footer" span="24">
         <ul class="sidebar-nav visible clearfix">
           <li v-for="(item,idx) of footerJson" :key="idx" class="sidebar-nav-item clearfix">
             <a href="" class="sidebar-link">{{item.title}}</a>
           </li>
         </ul>
+        <BackTop :bottom="0" :right="-60">
+          <div class="top"><Icon type="ios-jet-outline" /></div>
+        </BackTop>
       </Col>
+      <section>
+        <ArticleList />
+        <AsideBar />
+      </section>
     </Row>
   </div>
 </template>
@@ -21,7 +24,7 @@ import {asideJson, footerJson} from "@/assets/json/homeJson";
 import ArticleList from "./articleList.vue";
 import AsideBar from "./asideBar.vue";
 import { Component, Vue } from "vue-property-decorator";
-import store from '@/vuex/store';
+// import store from '@/vuex/store';
 import {mapMutations} from 'vuex';
 @Component({
   components:{
@@ -55,7 +58,6 @@ export default class HomePage extends Vue {
   width: 1040px;
   bottom: 0;
   left: 50%;
-  z-index: -1;
   .sidebar-nav{
     transition: opacity .15s ease-out,transform .15s ease-out;
     transform: translateY(15px) translateZ(0);
@@ -64,6 +66,39 @@ export default class HomePage extends Vue {
   .sidebar-nav.visible {
     transform: translateY(0) translateZ(0);
     opacity: 1;
+  }
+}
+.top{
+  padding: 10px;
+  text-align: center;
+  border-radius: 2px;
+  i{
+    color: rgba(51, 51, 51, 0.8);
+    transition: transform .5 ease;
+    transition: color .5s ease;
+    animation: planeFrom .2s;
+    transform: rotateZ(0);
+    &:hover{
+      color: #1396ff;
+      animation: planeTo .5s;
+      transform: rotateZ(-45deg);
+    }
+  }
+}
+@keyframes planeTo {
+  from {
+      transform: rotateZ(0);
+  }
+  to {
+      transform: rotateZ(-45deg);
+  }
+}
+@keyframes planeFrom {
+  from {
+      transform: rotateZ(-45deg);
+  }
+  to {
+      transform: rotateZ(0);
   }
 }
 .sidebar-nav {

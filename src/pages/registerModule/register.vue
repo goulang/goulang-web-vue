@@ -1,11 +1,11 @@
 <template>
-  <div class="app-register" @click.stop="hideRegister($event)">
-    <div v-if="isClose" class="gl-register">
+  <div class="app-register">
+    <div class="gl-register">
       <Form ref="formCustom" :model="formCustom">
         <FormItem>
           <div class="reg-title-box">
             <h3>注册
-              <Icon type="ios-close" />
+              <Icon type="ios-close" @click="handleClose" />
             </h3>
           </div>
         </FormItem>
@@ -22,7 +22,7 @@
           <Button :style="{width:'100%'}" type="primary" :loading="upLoading" @click="handleSubmit('formCustom')">注册</Button>
         </FormItem>
         <div class="login text-center">
-          <a>已有账户登录</a>
+          <a @click="handleLogin">已有账户登录</a>
         </div>
         <FormItem>
           <div class="other-login-mode text-center">
@@ -60,7 +60,6 @@ export default class RegisterPage extends Vue {
         pwd: "" //密码
       },
       upLoading: false,
-      isClose: true
     };
   }
   handleSubmit(name: string) {
@@ -92,20 +91,14 @@ export default class RegisterPage extends Vue {
       return;
     }
   }
-  // handleClose() {
-  //   this.$data.isClose = false;
-  // }
-  // DOM操作
-  // 隐藏
-  hideRegister(event: any) {
-    let ev = event || window.event;
-    let target = ev.target || ev.srcElement;
-    if (
-      target.className == "app-register" ||
-      target.className == "ivu-icon ivu-icon-ios-close"
-    ) {
-      this.$store.commit("register/toggleRegisterComponent");
-    }
+  //切换登录
+  handleLogin (){
+    this.$store.commit("login/toggleLoginComponent");
+    this.$store.commit("register/toggleRegisterComponent");
+  }
+  handleClose() {
+    //关闭注册
+    this.$store.commit("register/toggleRegisterComponent");
   }
 }
 </script>
@@ -117,7 +110,6 @@ export default class RegisterPage extends Vue {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99999;
   em,
   i {
     color: #999;

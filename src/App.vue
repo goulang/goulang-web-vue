@@ -3,11 +3,10 @@
     <!-- 这里不能引入组件 -->
     <!-- 全局 -->
     <div class="global-container">
-
+      <Login v-if="this.$store.state.login.loginComponentToggle"></Login>
+      <Register v-if="this.$store.state.register.registerComponentToggle"></Register>
     </div>
     <router-view />
-    <Login v-show="this.$store.state.login.loginComponentToggle"></Login>
-    <Register v-show="this.$store.state.register.registerComponentToggle"></Register>
   </div>
 </template>
 <script lang="ts">
@@ -18,7 +17,7 @@ import Register from "@/pages/registerModule/register.vue";
 @Component({
   components: {
     Login,
-    Register
+    Register,
   }
 })
 export default class App extends Vue {}
@@ -34,5 +33,9 @@ body {
   width: 100%;
   height: 100%;
   font-size: 16px;
+}
+.global-container{
+  position: relative;
+  z-index:999;
 }
 </style>

@@ -19,9 +19,28 @@
         <Input search placeholder="搜索 GouLang..." class="search-ipt" />
         </Col>
         <Col span="6" class="gl-user-box clearfix">
-        <div class="login-btn">
+        <div v-if="!isLogin" class="login-btn">
           <Button type="primary" icon="md-paper-plane" shape="circle" class="sign-in" @click="showContent('login')">登陆</Button>
           <Button type="dashed" icon="md-add" shape="circle" class="sign-up" @click="showContent('register')">注册</Button>
+        </div>
+        <div v-else class="gl-user-info">
+          <div class="gl-user-avatar">
+            <Dropdown>
+              <a href="javascript:void(0)">
+                <img src="@/assets/imgs/logo.jpg" alt="">
+              </a>
+              <DropdownMenu slot="list">
+                <DropdownItem>我的主页</DropdownItem>
+                <DropdownItem>我的收藏</DropdownItem>
+                <DropdownItem>我喜欢的</DropdownItem>
+                <DropdownItem>设置</DropdownItem>
+                <DropdownItem>登出</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
+          <!-- <Button type="info" icon="ios-paper-outline" ghost>发布</Button> -->
+          <Button class="writing" type="info" icon="md-create" ghost>发布</Button>
+          <Button shape="circle" title="通知" icon="ios-notifications-outline"></Button>
         </div>
         </Col>
       </Row>
@@ -38,6 +57,12 @@ export default class Appheader extends Vue {
   }
   tabJson: Array<object> = tabJson;
   tabIndex = 0;
+
+  data () {
+    return {
+      isLogin: false
+    }
+  }
 
   /* 本页面组件通用函数STR*/
   // 跳转页面
@@ -73,6 +98,7 @@ export default class Appheader extends Vue {
       : 0;
     this.pushRouter(name);
     this.navStyle(currentIndex);
+    this.handleGetLoginStatus()
   }
 
   // 跳转页面路由,禁止修改
@@ -80,18 +106,10 @@ export default class Appheader extends Vue {
     switch (item) {
       case "login": {
         this.$store.commit("login/toggleLoginComponent");
-        sessionStorage.removeItem("currentIndex");
-        sessionStorage.removeItem("name");
-        // this.navStyle(0);
-        // this.pushRouter(item);
         return;
       }
       case "register": {
         this.$store.commit("register/toggleRegisterComponent");
-        sessionStorage.removeItem("currentIndex");
-        sessionStorage.removeItem("name");
-        // this.navStyle(0);
-        // this.pushRouter(item);
         return;
       }
       default: {
@@ -111,9 +129,28 @@ export default class Appheader extends Vue {
     this.navStyle(0);
     this.pushRouter("home");
   }
+
+  //登录状态
+  handleGetLoginStatus (){
+    this.$data.isLogin = localStorage.getItem("login");
+    // if (this.$data.isLogin) {
+
+    // }
+  }
+
+  //通知
+  handleInform (){
+    // this.$store.commit("inform/toggleInformComponent");
+  }
+
+
 }
 </script>
 <style scoped lang="scss">
+i{
+  font-size: 32px;
+  color: #2d8cf0;
+}
 .gl-header {
   height: 60px;
   width: 100%;
@@ -263,7 +300,7 @@ export default class Appheader extends Vue {
     }
     .search-box {
       .search-ipt {
-        margin-top: 12px;
+        margin-top: 14px;
         width: 240px;
         .search-btn {
           cursor: pointer;
@@ -271,15 +308,47 @@ export default class Appheader extends Vue {
       }
     }
     .gl-user-box {
-      margin-top: 12px;
+      margin-top: 14px;
       float: left;
       margin-left: 31.6px;
       text-align: right;
-      .sign-in {
-        margin-right: 5px;
+      .login-btn{
+        .sign-in {
+          margin-right: 5px;
+        }
+        .sign-up {
+          margin-left: 5px;
+        }
       }
-      .sign-up {
-        margin-left: 5px;
+      .gl-user-info{
+        padding: 0 20px;
+        button{
+          margin-right: 25px;
+        }
+        .writing{
+          border-color: #dcdee2;
+          color: #999;
+          &:hover{
+            color: #1396ff;
+            border-color: #1396ff;
+          }
+        }
+        .gl-user-avatar{
+          text-align: left;
+          float: right;
+          width: 32px;
+          height: 32px;
+          a{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            img{
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+            }
+          }
+        }
       }
     }
   }
