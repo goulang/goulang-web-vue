@@ -5,13 +5,22 @@
     <div class="global-container">
 
     </div>
-    <router-view/>
+    <router-view />
+    <Login v-show="this.$store.state.login.loginComponentToggle"></Login>
+    <Register v-show="this.$store.state.register.registerComponentToggle"></Register>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 // 这里一定要写上vue后缀名
-@Component
+import Login from "@/pages/loginModule/login.vue";
+import Register from "@/pages/registerModule/register.vue";
+@Component({
+  components: {
+    Login,
+    Register
+  }
+})
 export default class App extends Vue {}
 </script>
 
