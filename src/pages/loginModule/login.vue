@@ -46,9 +46,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-@Component({
-  
-})
+// import store from '@/vuex';
+@Component
 export default class LoginPage extends Vue {
   constructor() {
     super();
@@ -80,7 +79,19 @@ export default class LoginPage extends Vue {
     } else {
       this.$Message.error('登录失败!');
       this.$data.upLoading = false;
-      return
+      return;
+    }
+  }
+  // DOM操作
+  // 隐藏
+  hideLogin(event: any) {
+    let ev = event || window.event;
+    let target = ev.target || ev.srcElement;
+    if (
+      target.className == "app-login" ||
+      target.className == "ivu-icon ivu-icon-ios-close"
+    ) {
+      this.$store.commit("login/toggleLoginComponent");
     }
   }
 }
