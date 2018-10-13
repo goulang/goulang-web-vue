@@ -1,6 +1,8 @@
 # 够浪社区 Vue+TypeScript+Sass
-## 技术栈
+## 技术栈 
 Vue + TypeScript + Sass
+## 环境
+* NodeJS -version  >= 8.11.2
 ## 项目运行,使用方法
 * git clone git@github.com:goulang/goulang-web-vue.git
 * cd goulang-web-vue
