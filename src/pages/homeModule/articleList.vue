@@ -129,13 +129,15 @@ export default class ArticlePage extends Vue {
 </script>
 <style lang="scss" scoped>
 article {
-  width: 70%;
-  float: left;
   #posts {
     margin: 0 0 0 70px;
     padding: 0;
     .post-container {
       margin: 0 0 20px 0;
+      transition: all .3s ease-in-out;
+      &:hover{
+        box-shadow: 0 2px 5px rgba(0,0,0,.1);
+      }
     }
     .post-full {
       width: 100%;
@@ -147,9 +149,9 @@ article {
       position: relative;
     }
     .post-content {
-      height: 170px;
       border-top: 1px solid #e7e7e7;
       padding: 15px 15px 0;
+      height: 170px;
       .post-picture {
         a {
           width: 25%;

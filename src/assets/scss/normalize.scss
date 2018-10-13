@@ -465,3 +465,25 @@
   .truncate-lines-3{
     -webkit-line-clamp: 3;
   }
+
+
+  /**
+  * 总体分布
+  */
+  .gl-home{
+    width:1040px;
+    margin:auto;
+    padding-top:30px;
+    transition: transform 0.1s ease;
+  }
+  .gl-home section{
+    width: 100%;
+  }
+  .gl-home article {
+    float: left;
+    width: 70%;
+  }
+  .gl-home aside {
+    float: right;
+    width:28%;
+  }

@@ -30,16 +30,14 @@
                 <img src="@/assets/imgs/logo.jpg" alt="">
               </a>
               <DropdownMenu slot="list">
-                <DropdownItem>我的主页</DropdownItem>
-                <DropdownItem>我的收藏</DropdownItem>
-                <DropdownItem>我喜欢的</DropdownItem>
-                <DropdownItem>设置</DropdownItem>
-                <DropdownItem>登出</DropdownItem>
+                <DropdownItem v-for="(item, index) in userHomeJson" :key="index">
+                  <span @click="handleUserList(item,index)">{{item.title}}</span>
+                </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
-          <!-- <Button type="info" icon="ios-paper-outline" ghost>发布</Button> -->
-          <Button class="writing" type="info" icon="md-create" ghost>发布</Button>
+          <!-- <Button class="writing" type="info" icon="md-create" ghost>发布</Button> -->
+          <Button class="writing" type="info" icon="ios-paper-outline" ghost>发布</Button>
           <Button shape="circle" title="通知" icon="ios-notifications-outline"></Button>
         </div>
         </Col>
@@ -49,13 +47,15 @@
 </template>
 <script lang="ts">
 import { tabJson } from "@/assets/json/tabJson";
+import { userHomeJson } from "@/assets/json/userJson";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class Appheader extends Vue {
   constructor() {
     super();
   }
-  tabJson: Array<object> = tabJson;
+  tabJson  : Array<object> = tabJson;
+  userHomeJson : Array<object> = userHomeJson;
   tabIndex = 0;
 
   data () {
@@ -121,6 +121,7 @@ export default class Appheader extends Vue {
     }
     let routeName: string = item["name"];
     let currentIndex: number = index;
+    
     this.navStyle(currentIndex);
     this.pushRouter(routeName);
   }
@@ -136,6 +137,40 @@ export default class Appheader extends Vue {
     // if (this.$data.isLogin) {
 
     // }
+  }
+
+  //用户头像下面的列表跳转
+  handleUserList (item: any, idx: number) :void {
+    console.log(item["name"])
+    let routeName: string = item["name"];
+    let currentIndex: number = 0;
+    
+    this.navStyle(currentIndex);
+    this.pushRouter(routeName);
+    switch (item["name"]) {
+      case "homepage": {
+        return
+      }
+      case "collections": {
+        return
+      }
+      case "praise": {
+        return
+      }
+      case "settings": {
+        return
+      }
+      case "exit": {
+        localStorage.removeItem("login");
+        this.navStyle(currentIndex);
+        this.pushRouter("home");
+        location.reload();
+        return
+      }
+      default: {
+        console.log("#c 没有有效的路由","color:#ff0");
+      }
+    }
   }
 
   //通知
@@ -346,6 +381,14 @@ i{
               width: 100%;
               height: 100%;
               border-radius: 50%;
+            }
+          }
+          .ivu-dropdown-item{
+            padding: 0;
+            span{
+              display: inline-block;
+              width: 100%;
+              padding: 7px 16px;
             }
           }
         }

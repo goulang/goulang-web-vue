@@ -17,18 +17,17 @@ import PartnerRouteList from "./route_modules/partner";
 // 周刊模块
 import WeeklyRouteList from "./route_modules/weekly";
 
-// 登陆
-// import LoginRouteList from "./route_modules/login";
-// 注册
-// import RegisterRouteList from "./route_modules/register";
+//个人中心路由
+//我的主页模块
+import UserHomeRouteList from "./route_modules/user_modules/userHome";
+
 const IndexChildrenRoutes = [...HomeRouteList,
 ...TutorialRouteList,
 ...ResourceRouteList,
 ...RecruitRouteList,
 ...PartnerRouteList,
 ...WeeklyRouteList,
-// ...LoginRouteList,
-// ...RegisterRouteList
+...UserHomeRouteList,
 ]
 Vue.use(Router)
 export default new Router({

@@ -169,6 +169,10 @@ aside{
       overflow: hidden;
     }
 }
+.recommend-attention,
+.funny-pictures{
+  box-shadow: 0 2px 2px rgba(0,0,0,.08);
+}
 .funny-pictures{
   background:#fff;
   margin-top: 20px;
