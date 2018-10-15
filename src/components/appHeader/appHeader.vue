@@ -1,18 +1,18 @@
 <template>
   <Affix>
-    <div class="gl-header">
+    <nav class="gl-nav">
       <Row type="flex" class="header-main">
         <Col offset="2" span="2" class="gl-logo clearfix">
         <img src="@/assets/imgs/logo.jpg" class="gl-logo-img" alt="gl-logo" @click="goulang()">
         </Col>
-        <Col span="10" class="gl-nav-col">
-        <nav class="gl-nav">
-          <ul class="gl-nav-box clearfix">
-            <li class="gl-nav-item" :class="{'current-nav':index==tabIndex}" v-for="(item,index) of tabJson" :key="index">
+        <Col span="10" class="nav-main-col">
+        <div class="nav-main">
+          <ul class="nav-main-box clearfix">
+            <li class="nav-main-item" :class="{'current-nav':index==tabIndex}" v-for="(item,index) of tabJson" :key="index">
               <span @click="showContent(item,index)">{{item.title}}</span>
             </li>
           </ul>
-        </nav>
+        </div>
         </Col>
         <!-- this is goulang's search,maybe you can find something -->
         <Col class="search-box clearfix" span="6">
@@ -42,7 +42,7 @@
         </div>
         </Col>
       </Row>
-    </div>
+    </nav>
   </Affix>
 </template>
 <script lang="ts">
@@ -186,7 +186,7 @@ i{
   font-size: 32px;
   color: #2d8cf0;
 }
-.gl-header {
+.gl-nav {
   height: 60px;
   width: 100%;
   min-width: 980px;
@@ -242,10 +242,10 @@ i{
         -webkit-animation-delay: 2s;
       }
     }
-    .gl-nav-col {
-      .gl-nav {
-        .gl-nav-box {
-          .gl-nav-item {
+    .nav-main-col {
+      .nav-main {
+        .nav-main-box {
+          .nav-main-item {
             float: left;
             height: 60px;
             line-height: 60px;

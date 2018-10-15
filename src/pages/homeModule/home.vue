@@ -2,14 +2,16 @@
   <div class="gl-home">
     <Row type="flex" class="code-row-bg">
       <Col id="sidebar-footer-nav" class="pinned-sidebar-footer" span="24">
-        <ul class="sidebar-nav visible clearfix">
-          <li v-for="(item,idx) of footerJson" :key="idx" class="sidebar-nav-item clearfix">
-            <a href="" class="sidebar-link">{{item.title}}</a>
-          </li>
-        </ul>
-        <BackTop :bottom="0" :right="-60">
-          <div class="top"><Icon type="ios-jet-outline" /></div>
-        </BackTop>
+        <footer class="gl-footer">
+          <ul class="sidebar-nav visible clearfix">
+            <li v-for="(item,idx) of footerJson" :key="idx" class="sidebar-nav-item clearfix">
+              <a href="" class="sidebar-link">{{item.title}}</a>
+            </li>
+          </ul>
+          <BackTop :bottom="0" :right="-60">
+            <div class="top"><Icon type="ios-jet-outline" /></div>
+          </BackTop>
+        </footer>
       </Col>
       <section>
         <ArticleList />

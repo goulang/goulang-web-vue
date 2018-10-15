@@ -2,7 +2,7 @@
   <article class="clearfix">
     <Col span="24">
     <ol id="posts">
-      <li class="post-container" v-for="(item,idx) of listData">
+      <li class="post-container" v-for="(item,idx) of listData" :key="idx">
         <div class="post-full">
           <div class="post-wrapper">
             <div class="post-header">
