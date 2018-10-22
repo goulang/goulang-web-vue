@@ -1,15 +1,15 @@
-export const userHomeJson =
+export const userJson =
 [
     {
         title    : "我的主页",
-        name     : "homepage",
+        name     : "user",
         children : []
     },
-    {
-        title    : "我的收藏",
-        name     : "collections",
-        children : []
-    },
+    // {
+    //     title    : "我的收藏",
+    //     name     : "collections",
+    //     children : []
+    // },
     {
         title    : "我喜欢的",
         name     : "praise",
@@ -17,7 +17,7 @@ export const userHomeJson =
     },
     {
         title    : "设置",
-        name     : "settings",
+        name     : "setting",
         children : []
     },
     {

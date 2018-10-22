@@ -30,7 +30,7 @@
                 <img src="@/assets/imgs/logo.jpg" alt="">
               </a>
               <DropdownMenu slot="list">
-                <DropdownItem v-for="(item, index) in userHomeJson" :key="index">
+                <DropdownItem v-for="(item, index) in userJson" :key="index">
                   <span @click="handleUserList(item,index)">{{item.title}}</span>
                 </DropdownItem>
               </DropdownMenu>
@@ -38,7 +38,7 @@
           </div>
           <!-- <Button class="writing" type="info" icon="md-create" ghost>发布</Button> -->
           <Button class="writing" type="info" icon="ios-paper-outline" ghost>发布</Button>
-          <Button shape="circle" title="通知" icon="ios-notifications-outline"></Button>
+          <Button @click="showContent('inform')" shape="circle" title="通知" icon="ios-notifications-outline"></Button>
         </div>
         </Col>
       </Row>
@@ -47,7 +47,7 @@
 </template>
 <script lang="ts">
 import { tabJson } from "@/assets/json/tabJson";
-import { userHomeJson } from "@/assets/json/userJson";
+import { userJson } from "@/assets/json/userJson";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class Appheader extends Vue {
@@ -55,12 +55,12 @@ export default class Appheader extends Vue {
     super();
   }
   tabJson  : Array<object> = tabJson;
-  userHomeJson : Array<object> = userHomeJson;
+  userJson : Array<object> = userJson;
   tabIndex = 0;
 
   data () {
     return {
-      isLogin: false
+      isLogin: false,
     }
   }
 
@@ -112,6 +112,11 @@ export default class Appheader extends Vue {
         this.$store.commit("register/toggleRegisterComponent");
         return;
       }
+      case "inform": {
+        this.navStyle(-1);
+        this.pushRouter(item);
+        return;
+      }
       default: {
         console.log("#c 没有有效的路由","color:#ff0");
       }
@@ -142,27 +147,12 @@ export default class Appheader extends Vue {
   //用户头像下面的列表跳转
   handleUserList (item: any, idx: number) :void {
     console.log(item["name"])
-    let routeName: string = item["name"];
-    let currentIndex: number = 0;
-    
-    this.navStyle(currentIndex);
-    this.pushRouter(routeName);
+    this.navStyle(-1);
+    this.pushRouter(item["name"])
     switch (item["name"]) {
-      case "homepage": {
-        return
-      }
-      case "collections": {
-        return
-      }
-      case "praise": {
-        return
-      }
-      case "settings": {
-        return
-      }
       case "exit": {
         localStorage.removeItem("login");
-        this.navStyle(currentIndex);
+        this.navStyle(0);
         this.pushRouter("home");
         location.reload();
         return

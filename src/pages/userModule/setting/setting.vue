@@ -1,11 +1,11 @@
 <template>
-  <div class="gl-user-home">
-    <div class="gl-home user-home">
+  <div class="gl-setting">
+    <div class="setting user-setting">
       <Row type="flex" class="code-row-bg">
         <section>
           <article>
-            <userHeader />
-            <userNavbar />
+            <!-- <userHeader />
+            <userNavbar /> -->
           </article>
           <UserAside />
         </section>
