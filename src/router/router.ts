@@ -24,6 +24,9 @@ import UserHomeRouteList from "./route_modules/user_modules/userHome";
 import InformRouteList from "./route_modules/user_modules/inform";
 // 用户设置
 import SettingRouteList from "./route_modules/user_modules/setting";
+// 基本设置
+// import BasicRouteList from "./route_modules/user_modules/setbasic";
+
 const IndexChildrenRoutes = [...HomeRouteList,
 ...TutorialRouteList,
 ...ResourceRouteList,
@@ -33,6 +36,7 @@ const IndexChildrenRoutes = [...HomeRouteList,
 ...UserHomeRouteList, //个人中心
 ...InformRouteList,   //用户通知
 ...SettingRouteList,  //用户设置
+// ...BasicRouteList,    //基本设置
 ]
 Vue.use(Router)
 export default new Router({
