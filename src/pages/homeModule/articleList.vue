@@ -1,7 +1,7 @@
 <template>
   <article class="clearfix">
     <Col span="24">
-    <ol id="posts">
+    <ul id="posts">
       <li class="post-container" v-for="(item,idx) of listData" :key="idx">
         <div class="post-full">
           <div class="post-wrapper">
@@ -27,8 +27,12 @@
               <div class="post-list">
                 <div class="post-list-item">
                   <div class="post-list-item-title">
-                    <h3 v-if="item.title.length >= '55'" class="truncate-lines truncate-lines-2" dir="auto"><a :title="item.title" href="#">{{item.title}}</a></h3>
-                    <h3 v-else dir="auto"><a href="#">{{item.title}}</a></h3>
+                    <h3 v-if="item.title.length >= '55'" class="truncate-lines truncate-lines-2" dir="auto">
+                      <a target="_blank" :title="item.title" href="#">{{item.title}}</a>
+                    </h3>
+                    <h3 v-else dir="auto">
+                      <a target="_blank" href="#">{{item.title}}</a>
+                    </h3>
                   </div>
                   <div v-if="item.content.length>='110'" :title="item.content" dir="auto" class="post-list-item-content truncate-lines truncate-lines-3">
                     {{item.content}}
@@ -71,7 +75,7 @@
           </div>
         </div>
       </li>
-    </ol>
+    </ul>
     </Col>
   </article>
 </template>
