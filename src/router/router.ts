@@ -13,7 +13,7 @@ import ResourceRouteList from "./route_modules/resource";
 // 人才的模块
 import RecruitRouteList from "./route_modules/recruit";
 // 合作的模块
-import PartnerRouteList from "./route_modules/partner";
+import PartnerRouteList from "./route_modules/questions";
 // 周刊模块
 import WeeklyRouteList from "./route_modules/weekly";
 

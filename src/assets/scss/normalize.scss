@@ -491,7 +491,17 @@
     float: right;
     width:25%;
   }
-
+  .gray-dot{
+    font-size: 12px;
+    &:before{
+      content: "\2022";
+      color: #999;
+      margin: 0 5px;
+      font-size: 12px;
+      top: -1px;
+      border-radius: 50%;
+    }
+  }
   .mgt--20{
     margin-top: -20px !important;
   }
@@ -501,4 +511,12 @@
   time{
     color: #666;
     font-size: 14px;
+  }
+  .ivu-select-dropdown{
+    z-index: 999 !important;
+  }
+  .h-o--8{
+    &:hover{
+      opacity: .8;
+    }
   }

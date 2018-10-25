@@ -7,13 +7,15 @@
             <img :src="item.user_avatar" class="avatar-img" alt="">
           </a>
         </div>
-        <div class="user-name truncate-line">
+        <div class="user-name truncate-line" :class="{'issue-line': name=='issue'}">
           <span>
             <a href="">
             {{item.name}}
             </a>
+            <time v-if="name==='issue'" class="gray-dot">一小时前提问</time>
+            <time v-else class="gray-dot">一小时前</time>
             <br />
-            <!-- 是否是从"问题"点进来的 -->
+            <!-- 判断关注还是问答 -->
             <a href="" v-if="name==='issue'">
               <!-- 用户提问题的标题 -->
               <small>{{item.title}}</small>
@@ -22,8 +24,31 @@
             <small v-else>{{item.title}}</small>
           </span>
         </div>
+        <div class="issue-rank" v-if="name==='issue'">
+          <div class="rank--item rank-votes">
+            <div class="votes">
+              <span>100</span>
+              <br>
+              <span>得票</span>
+            </div>
+          </div>
+          <div class="rank--item rank-answers">
+            <div class="answers">
+              <span>100</span>
+              <br>
+              <span>回答</span>
+            </div>
+          </div>
+          <div class="rank--item rank-views">
+            <div class="views">
+              <span>100</span>
+              <br>
+              <span>浏览</span>
+            </div>
+          </div>
+        </div>
         <!-- 从"问题点进来不需要显示关注按钮" -->
-        <div v-if="name!=='issue'" data-v-74a6ae54="" class="user-author-attention">
+        <div v-else data-v-74a6ae54="" class="user-author-attention">
           <Button type="primary">关注</Button>
         </div>
       </div>
@@ -104,9 +129,27 @@ export default class UserLIst extends Vue {
       }
       small{
         display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
         color: #333;
-        transition: all .3s ease;
+        width: 100%;
+        transition: all .3s ease;display: inline-block;
       }
+    }
+  }
+  .issue-rank{
+    display: inline-block;
+    margin-left: 34px;
+    margin-top: 4px;
+    width: 25%;
+    .rank--item {
+      width: 33.33%;
+      display: inline-block;
+      font-size: 14px;
+      color: #666;
+      opacity: .8;
+      text-align: center;
     }
   }
   .user-author-attention{
@@ -115,10 +158,12 @@ export default class UserLIst extends Vue {
     top: 20px;
   }
   .truncate-line{
-    text-overflow: clip;
-    max-width: calc(100% - 66px);
-    white-space: nowrap;
     overflow: hidden;
+    max-width: calc(100% - 106px);
+  }
+  .issue-line{
+    width: 70%;
+    float: left;
   }
 }
 </style>

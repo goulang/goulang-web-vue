@@ -47,19 +47,6 @@ export default class InformPage extends Vue {
 }
 </script>
 <style lang="scss" scoped>
-.gray-dot{
-  font-size: 12px;
-  &:before {
-    content: "\2022";
-    color: #999;
-    margin-left: 5px;
-    margin-right: 5px;
-    font-size: 12px;
-    top: -1px;
-    border-radius: 50%;
-  }
-}
-
 .user-news,
 .system-inform{
   background: #fff;
@@ -152,19 +139,6 @@ export default class InformPage extends Vue {
       font-size: 16px;
       color: #333;
     }
-  }
-}
-
-time {
-  font-size: 12px;
-  &:before {
-    content: "\2022";
-    color: #999;
-    margin-left: 5px;
-    margin-right: 5px;
-    font-size: 12px;
-    top: -1px;
-    border-radius: 50%;
   }
 }
 </style>
