@@ -155,7 +155,7 @@ article {
     .post-content {
       border-top: 1px solid #e7e7e7;
       padding: 15px 15px 0;
-      height: 170px;
+      max-height: 170px;
       .post-picture {
         a {
           width: 25%;
