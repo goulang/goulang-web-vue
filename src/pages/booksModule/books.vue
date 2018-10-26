@@ -1,5 +1,5 @@
 <template>
-  <div class="gl-tutorial">
+  <div class="gl-books">
     <Details />
   </div>
 </template>
@@ -13,7 +13,7 @@ import Details from "@/components/details/details.vue"
     Details
   }
 })
-export default class TutorialPage extends Vue {
+export default class booksPage extends Vue {
   constructor() {
     super();
   }
