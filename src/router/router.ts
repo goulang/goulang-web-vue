@@ -6,14 +6,14 @@ import Index from "@/pages/index.vue";
 // 路由按照模块划分
 // 首页的模块
 import HomeRouteList from "./route_modules/home";
-// 教程的模块
-import TutorialRouteList from "./route_modules/tutorial";
-// 资源的模块
-import ResourceRouteList from "./route_modules/resource";
+// 槽点的模块
+import SpitslotRouteList from "./route_modules/spitslot";
+// 书籍的模块
+import BooksRouteList from "./route_modules/books";
 // 人才的模块
 import RecruitRouteList from "./route_modules/recruit";
-// 合作的模块
-import PartnerRouteList from "./route_modules/questions";
+// 问答的模块
+import IssueRouteList from "./route_modules/issue";
 // 周刊模块
 import WeeklyRouteList from "./route_modules/weekly";
 
@@ -28,10 +28,10 @@ import SettingRouteList from "./route_modules/user_modules/setting";
 // import BasicRouteList from "./route_modules/user_modules/setbasic";
 
 const IndexChildrenRoutes = [...HomeRouteList,
-...TutorialRouteList,
-...ResourceRouteList,
+...SpitslotRouteList,
+...BooksRouteList,
 ...RecruitRouteList,
-...PartnerRouteList,
+...IssueRouteList,
 ...WeeklyRouteList,   
 ...UserHomeRouteList, //个人中心
 ...InformRouteList,   //用户通知
