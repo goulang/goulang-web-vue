@@ -1,5 +1,5 @@
 <template>
-  <div class="setting-basic setting">
+  <div class="setting-basic setting-item">
     <div class="setting-title">
       <h3>账户</h3>
       <p>更改您的基本帐户信息。</p>

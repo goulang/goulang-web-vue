@@ -16,7 +16,8 @@ import RecruitRouteList from "./route_modules/recruit";
 import IssueRouteList from "./route_modules/issue";
 // 周刊模块
 import WeeklyRouteList from "./route_modules/weekly";
-
+//详情页
+import DetailsRouteList from './route_modules/details'
 //个人中心路由
 //我的主页模块
 import UserHomeRouteList from "./route_modules/user_modules/userHome";
@@ -37,6 +38,7 @@ const IndexChildrenRoutes = [...HomeRouteList,
 ...InformRouteList,   //用户通知
 ...SettingRouteList,  //用户设置
 // ...BasicRouteList,    //基本设置
+...DetailsRouteList,
 ]
 Vue.use(Router)
 export default new Router({

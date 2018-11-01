@@ -1,15 +1,15 @@
 <template>
   <div class="gl-issue gl-home">
-    <section>
-        <article>
-          <div class="issue-main">
-            <UserList  :userInfo="asideJson" :name="'issue'"  />
-          </div>
-        </article>
-        <aside class="w--25">
-          
-        </aside>
-    </section>
+    <main>
+      <article>
+        <div class="issue-main">
+          <UserList  :userInfo="asideJson" :name="'issue'"  />
+        </div>
+      </article>
+      <aside class="w--25">
+        
+      </aside>
+    </main>
   </div>
 </template>
 
@@ -24,11 +24,11 @@ import UserList from "@/pages/userModule/user/userList.vue";
 
 })
 export default class issuePage extends Vue {
-    /**
-   * articleJson  文章列表
-   * asideJson    侧 边 栏
-   * footerJson   页面底部
-   */
+  /**
+  * articleJson  文章列表
+  * asideJson    侧 边 栏
+  * footerJson   页面底部
+  */
   articleJson: Array<object> = articleJson;
   asideJson: Array<object> = asideJson;
 }

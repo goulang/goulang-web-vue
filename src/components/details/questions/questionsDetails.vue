@@ -93,18 +93,15 @@
 
 <script lang="ts">
 import { Component, Vue} from 'vue-property-decorator';
+import WeeklyDetails from '@/pages/weeklyModule/weeklyDetails.vue';
 @Component({
   components: {
+    WeeklyDetails
   }
 })
 export default class Details extends Vue {
   constructor(){
     super()
-  }
-  data () {
-    return {
-      weekly: true
-    }
   }
 }
 </script>

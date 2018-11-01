@@ -3,7 +3,7 @@
     <Col span="24">
       <div class="recommend-attention">
         <dl>
-          <dt class="section-header recommended-user-header">推荐的用户</dt>
+          <dt class="main-header recommended-user-header">推荐的用户</dt>
           <dd v-for="(item,idx) of asideJson" :key="idx" class="item">
             <div class="recommended-user-info user-info">
               <div class="recommended-avatar">
@@ -129,7 +129,7 @@ aside{
     }
     
   }
-  .section-header{
+  .main-header{
     border-bottom: 2px solid hsla(0, 0%, 20%, .13);
     background-color: transparent;
     text-transform: uppercase;

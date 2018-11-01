@@ -75,7 +75,7 @@ export default class SettingPage extends Vue {
     background-color: #fff;
   }
   .settings{
-    .setting{
+    .setting-item{
       padding: 15px;
       .setting-title{
         padding: 20px 45px;

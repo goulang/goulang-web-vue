@@ -1,7 +1,7 @@
 <template>
   <!-- tabs -->
   <div class="cover-nav cover-nav-profile-user">
-    <Tabs value="article" :animated="false">
+    <Tabs value="article" @on-click='handleAddClass' :animated="false">
       <TabPane label="文章" name="article">
         <ul class="posts">
           <li class="post-container" v-for="(item,idx) of articleJson" :key="idx">
@@ -307,11 +307,11 @@
           </li>
         </ul>
       </TabPane>
-      <TabPane label="关注" name="follow">
-        <UserList :userInfo="asideJson" />
+      <TabPane label="关注" :class="'mgt--20'" name="follow">
+        <UserList :name="'follow'" :userInfo="asideJson" />
       </TabPane>
-      <TabPane label="粉丝" name="followers">
-        <UserList :userInfo="asideJson" />
+      <TabPane label="粉丝" :class="'mgt--20'" name="followers">
+        <UserList :name="'followers'" :userInfo="asideJson" />
       </TabPane>
     </Tabs>
   </div>
@@ -353,10 +353,10 @@ export default class UserNavbar extends Vue {
           })
         ])
       },
+      mgb20: false,
     }
   }
-  handleAddClass() {
-    console.log(this)
+  handleAddClass(name: string) {
   }
   /**
    * articleJson  文章列表

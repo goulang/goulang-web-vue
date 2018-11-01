@@ -1,5 +1,5 @@
 <template>
-  <div class="setting-password setting">
+  <div class="setting-password setting-item">
     <div class="setting-title">
       <h3>修改密码</h3>
       <p>可以更换您的密码</p>

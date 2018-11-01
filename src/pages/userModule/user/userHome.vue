@@ -2,13 +2,13 @@
   <div class="gl-user-home">
     <div class="gl-home user-home">
       <Row type="flex" class="code-row-bg">
-        <section>
+        <main>
           <article>
             <userHeader />
             <userNavbar />
           </article>
           <UserAside />
-        </section>
+        </main>
       </Row>
     </div>
   </div>
