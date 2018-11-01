@@ -476,8 +476,8 @@
     padding-top:20px;
     transition: transform 0.1s ease;
   }
-  .gl-home .ivu-menu{
-    z-index: 9;
+  .ivu-menu{
+    z-index: 9 !important;
   }
   .gl-home main{
     width: 100%;
@@ -507,9 +507,6 @@
   }
   .mgt--20{
     margin-top: -20px !important;
-  }
-  .ivu-icon{
-    color: #999;
   }
   time{
     color: #666;

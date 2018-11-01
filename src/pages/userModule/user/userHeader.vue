@@ -108,6 +108,9 @@ i{
   }
   .user-main{
     padding-left: 20px;
+    .ivu-icon{
+      color: #999;
+    }
     .briefcase,
     .site,
     .description{
