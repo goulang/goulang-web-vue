@@ -1,5 +1,5 @@
 <template>
-  <div class="setting-bound setting">
+  <div class="setting-bound setting-item">
     <div class="setting-title">
       <h3>关联账户</h3>
       <p>关联您的社交媒体帐户进行一键登录</p>

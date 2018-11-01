@@ -1,7 +1,7 @@
 <template>
   <div class="gl-home user-home">
     <Row type="flex" class="code-row-bg">
-      <section>
+      <main>
         <article>
           <Menu mode="horizontal" @on-select="handleToggleInform" replace active-name="userNews">
             <MenuItem name="userNews">
@@ -15,7 +15,7 @@
           <SystemInform v-else />
         </article>
         <UserAside />
-      </section>
+      </main>
     </Row>
   </div>
 </template>

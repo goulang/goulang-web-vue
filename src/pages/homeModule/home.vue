@@ -13,10 +13,10 @@
           </BackTop>
         </footer>
       </Col>
-      <section>
+      <main>
         <ArticleList />
         <AsideBar />
-      </section>
+      </main>
     </Row>
   </div>
 </template>

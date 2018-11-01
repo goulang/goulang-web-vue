@@ -1,7 +1,7 @@
 <template>
   <div class="gl-spitslot gl-home">
     <!-- 槽点 -->
-    <section>
+    <main>
       <article>
         <div class="spitslot-main">
           <div class="spitslot-header-container">
@@ -287,7 +287,7 @@
       <aside class="w--25">
         
       </aside>
-    </section>
+    </main>
   </div>
 </template>
 

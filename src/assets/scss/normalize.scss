@@ -15,7 +15,7 @@
     -webkit-text-size-adjust: 100%; /* 2 */
   }
   
-  /* Sections
+  /* mains
      ========================================================================== */
   
   /**
@@ -35,12 +35,12 @@
   footer,
   header,
   nav,
-  section {
+  main {
     display: block;
   }
   
   /**
-   * Correct the font size and margin on `h1` elements within `section` and
+   * Correct the font size and margin on `h1` elements within `main` and
    * `article` contexts in Chrome, Firefox, and Safari.
    */
   
@@ -476,7 +476,10 @@
     padding-top:20px;
     transition: transform 0.1s ease;
   }
-  .gl-home section{
+  .gl-home .ivu-menu{
+    z-index: 9;
+  }
+  .gl-home main{
     width: 100%;
   }
   .gl-home article {
