@@ -22,7 +22,7 @@
             <em>没有账号？</em><a @click="handleRegister">注册</a>
           </div>
           <div class="forget-pwd">
-            <a>忘记密码</a>
+            <a @click="handleForgetPwd('forget')">忘记密码</a>
           </div>
         </FormItem>
         <FormItem>
@@ -100,6 +100,21 @@ export default class LoginPage extends Vue {
   handleAddLoginStatus () {
     let login: any = localStorage.setItem("login", 'true')
   }
+
+  //忘记密码
+  handleForgetPwd (name: string) {
+    if (name === 'forget') {
+      this.$router.replace({
+        name
+      });
+      sessionStorage.setItem("name", 'forget');
+      sessionStorage.setItem("currentIndex", '-1'.toString());
+      this.$store.commit("login/toggleLoginComponent");
+    } else {
+      console.log('错误路由');
+    }
+  }
+
 }
 </script>
 <style lang="scss" scoped>

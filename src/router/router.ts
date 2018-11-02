@@ -18,6 +18,12 @@ import IssueRouteList from "./route_modules/issue";
 import WeeklyRouteList from "./route_modules/weekly";
 //详情页
 import DetailsRouteList from './route_modules/details'
+
+//忘记密码
+import ForgetRouteList from './route_modules/forget';
+import ResetRouteList from './route_modules/reset';
+
+
 //个人中心路由
 //我的主页模块
 import UserHomeRouteList from "./route_modules/user_modules/userHome";
@@ -37,8 +43,10 @@ const IndexChildrenRoutes = [...HomeRouteList,
 ...UserHomeRouteList, //个人中心
 ...InformRouteList,   //用户通知
 ...SettingRouteList,  //用户设置
-// ...BasicRouteList,    //基本设置
-...DetailsRouteList,
+// ...BasicRouteList, //基本设置
+...DetailsRouteList,  //列表页
+...ForgetRouteList,   //重置密码
+...ResetRouteList,    //新密码
 ]
 Vue.use(Router)
 export default new Router({
