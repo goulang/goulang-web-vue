@@ -8,13 +8,16 @@ import HomeStore from "./store_modules/homeStore"
 import LoginStore from "./store_modules/loginStore"
 // 注册模块
 import RegisterStore from "./store_modules/registerStore"
+// 发布模块
+import PublishStore from "./store_modules/publishStore"
 export default new Vuex.Store({
   modules: {
     // 下面的命名方式是经过推敲的,通过Redux中实践出来的,因此最好这样子规范命名
     home: HomeStore,
     // 登陆模块
-    login: LoginStore,
-    register:RegisterStore
-
+    login     : LoginStore,
+    register  : RegisterStore,
+    // 发布模块
+    publish   : PublishStore
   }
 })

@@ -3,7 +3,7 @@
     <nav class="gl-nav">
       <Row type="flex" class="header-main">
         <Col offset="2" span="2" class="gl-logo clearfix">
-        <img src="@/assets/imgs/logo.jpg" class="gl-logo-img" alt="gl-logo" @click="goulang()">
+          <img src="@/assets/imgs/go.png" class="gl-logo-img" alt="gl-logo" @click="goulang()">
         </Col>
         <Col span="10" class="nav-main-col">
         <div class="nav-main">
@@ -37,7 +37,7 @@
             </Dropdown>
           </div>
           <!-- <Button class="writing" type="info" icon="md-create" ghost>发布</Button> -->
-          <Button class="writing" type="info" icon="ios-paper-outline" ghost>发布</Button>
+          <Button class="writing" @click="handlePublishToggle" type="info" icon="ios-paper-outline" ghost>发布</Button>
           <Button @click="showContent('inform')" shape="circle" title="通知" icon="ios-notifications-outline"></Button>
         </div>
         </Col>
@@ -168,6 +168,11 @@ export default class Appheader extends Vue {
     // this.$store.commit("inform/toggleInformComponent");
   }
 
+  //发布
+  handlePublishToggle () {
+    this.$store.commit("publish/togglePublishComponent");
+    // console.log(this.$store.state.publish.publishComponentToggle)
+  }
 
 }
 </script>

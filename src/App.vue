@@ -5,6 +5,7 @@
     <div class="global-container">
       <Login v-if="this.$store.state.login.loginComponentToggle"></Login>
       <Register v-if="this.$store.state.register.registerComponentToggle"></Register>
+      <Publish v-if="this.$store.state.publish.publishComponentToggle"></Publish>
     </div>
     <router-view />
   </div>
@@ -14,10 +15,12 @@ import { Component, Vue } from "vue-property-decorator";
 // 这里一定要写上vue后缀名
 import Login from "@/pages/loginModule/login.vue";
 import Register from "@/pages/registerModule/register.vue";
+import Publish from "@/pages/publishModule/publish.vue";
 @Component({
   components: {
     Login,
     Register,
+    Publish,
   }
 })
 export default class App extends Vue {}

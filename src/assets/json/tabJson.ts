@@ -10,9 +10,9 @@ export const tabJson:Array<object>
     {
         title:"问答",name:"issue",chilren:[]
     },
-    {
-        title:"书籍",name:"books",chilren:[]
-    },
+    // {
+    //     title:"书籍",name:"books",chilren:[]
+    // },
     {
         title:"人才",name:"recruit",chilren:[]
     },
