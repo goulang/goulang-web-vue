@@ -16,16 +16,16 @@ import RecruitRouteList from "./route_modules/recruit";
 import IssueRouteList from "./route_modules/issue";
 // 周刊模块
 import WeeklyRouteList from "./route_modules/weekly";
-//详情页
+// 详情页
 import DetailsRouteList from './route_modules/details'
 
-//忘记密码
+// 忘记密码
 import ForgetRouteList from './route_modules/forget';
 import ResetRouteList from './route_modules/reset';
 
 
-//个人中心路由
-//我的主页模块
+// 个人中心路由
+// 我的主页模块
 import UserHomeRouteList from "./route_modules/user_modules/userHome";
 // 用户通知
 import InformRouteList from "./route_modules/user_modules/inform";
@@ -33,6 +33,10 @@ import InformRouteList from "./route_modules/user_modules/inform";
 import SettingRouteList from "./route_modules/user_modules/setting";
 // 基本设置
 // import BasicRouteList from "./route_modules/user_modules/setbasic";
+
+// 富文本编辑器
+import EditorRouteList from "./route_modules/editor";
+
 
 const IndexChildrenRoutes = [...HomeRouteList,
 ...SpitslotRouteList,
@@ -47,6 +51,7 @@ const IndexChildrenRoutes = [...HomeRouteList,
 ...DetailsRouteList,  //列表页
 ...ForgetRouteList,   //重置密码
 ...ResetRouteList,    //新密码
+...EditorRouteList,   //富文本
 ]
 Vue.use(Router)
 export default new Router({

@@ -3,14 +3,14 @@
     <Modal
       v-model="publish"
       title="选择你要发布的类型"
-      transfer="false"
+      :transfer="false"
       @on-cancel="cancel"
-      footer-hide="true"
+      :footer-hide="true"
       width="980">
       <Row>
         <Col span="6">
           <div class="publish-type-item">
-            <a class="publish-wrap" href="">
+            <a class="publish-wrap" href="javascript:0;" @click="handleEditor('editor')">
               <div class="publish-item-title">
                 <h2>文章</h2>
               </div>
@@ -24,7 +24,7 @@
         </Col>
         <Col span="6">
           <div class="publish-type-item">
-            <a class="publish-wrap" href="">
+            <a class="publish-wrap" href="javascript:0;">
               <div class="publish-item-title">
                 <h2>槽点</h2>
               </div>
@@ -38,7 +38,7 @@
         </Col>
         <Col span="6">
           <div class="publish-type-item">
-            <a class="publish-wrap" href="">
+            <a class="publish-wrap" href="javascript:0;">
               <div class="publish-item-title">
                 <h2>问答</h2>
               </div>
@@ -52,7 +52,7 @@
         </Col>
         <Col span="6">
           <div class="publish-type-item">
-            <a class="publish-wrap" href="">
+            <a class="publish-wrap" href="javascript:0;">
               <div class="publish-item-title">
                 <h2>招聘</h2>
               </div>
@@ -82,13 +82,22 @@ export default class PublishPage extends Vue {
   }
   data () {
     return {
-      publish: true
+      publish: true,
+      translate: true
     }
   }
-  created() {
+  created () {
   }
   cancel () {
     this.$store.commit("publish/togglePublishComponent");
+  }
+  handleEditor (name: string) {
+    this.$router.replace({
+      name
+    });
+    // 关闭发布选项弹窗
+    this.$store.commit("publish/togglePublishComponent");
+    console.log(name)
   }
 }
 </script>
