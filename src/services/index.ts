@@ -9,7 +9,7 @@ export default class ApiService {
     }
 
 
-    // 登录
+    // 登录,登录之后 用js-cookie库 或者手写, 保存一下cookie,返回的东西是啥就是啥
     static Login(params: Login) {
         return http.post(apis.login, xw(params))
     }
@@ -32,11 +32,14 @@ export default class ApiService {
     static PublicTopics(topics: Topic) {
         return http.post(apis.topics, fd(topics))
     }
-    // // 通过id删除一个帖子,缺少一个字段,是token还是session??????
-    // static DelTopicsById(topicID:string){
-    //     return http.delete(apis.topics+topicID)
-    // }
- 
+    // 通过id更新一个帖子,第一个参数是id,第二个是内容,第二个是对象
+    static PutTopics(topicID: string, topics: Topic) {
+        return http.post(apis.topics, fd({ topicID, ...topics }))
+    }
+    // 通过id删除一个帖子 
+    static DelTopicsById(topicID: string) {
+        return http.delete(apis.topics + topicID)
+    }
 
 }
 
