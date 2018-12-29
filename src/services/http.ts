@@ -72,7 +72,7 @@ axios.interceptors.response.use(response => {
             default:
         }
     } else if (err) {
-        err.message = '逻辑错误'
+        // err.message = '逻辑错误'
     }
 
     return Promise.reject(err)

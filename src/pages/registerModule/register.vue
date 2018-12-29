@@ -61,14 +61,14 @@ export default class RegisterPage extends Vue {
   data() {
     return {
       formValidate:{
-        name:"",
-        password:"",
-        passwordAgin:"",
-        mail:"",
+        name:"admin",
+        password:"123456",
+        passwordAgin:"123456",
+        mail:"891177434@qq.com",
       },
       ruleValidate:{
         name:[{required:true, message: "注册的用户名不能为空", trigger: 'blur'},
-        {required:true,pattern: /^.{5,20}$/, message: "请输入5-20位的字符", trigger: 'blur' ,transform(value) {return (value).trim();}}],
+        {required:true,pattern: /^.{5,20}$/, message: "请输入5-20位的字符", trigger: 'blur' }],
         password:[{required:true,type: 'string', message: "注册的密码不能为空", trigger: 'blur'},
         {required:true, pattern: /^.{5,20}$/, message: "请输入5-20位的字符", trigger: 'blur'}],
         passwordAgin:[{required:true,type: 'string', message: "注册的密码不能为空", trigger: 'blur'},
@@ -77,28 +77,33 @@ export default class RegisterPage extends Vue {
       } 
     };
   }
-  handleSubmit (name:any) {
-      this.$refs[name]["validate"]((valid) => {
-          if (valid) {
+  handleSubmit (name:string) {
+    
+      // this.$refs[name]["validate"]((valid) => {
+      //     if (valid) {
               this.Register()
-          } else {
-              this.$Message.error("请检查!");
-          }
-      })
+      //     } else {
+      //         this.$Message.error("请检查!");
+      //     }
+      // })
   } 
-  Register = () => {
+  Register () {
     //     formCustom
     // username
     // contact
     // pwd
-    let name = this.$data.formCustom.username,
-      password = this.$data.formCustom.pwd,
-      email = this.$data.formCustom.contact;
+    // console.log(2)
+    let name = this.$data.formValidate.name,
+      password = this.$data.formValidate.password,
+      email = this.$data.formValidate.mail;
     ApiService.Register({
       name,
       password,
       email
-    });
+    })
+    .then(res=>{
+      console.log(res)
+    })
   };
   //切换登录
   handleLogin() {
