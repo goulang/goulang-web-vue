@@ -6,11 +6,11 @@ export interface Login {
 // 注册
 export interface Register {
     name: string;
-    description: string;
-    email: string;
     password: string;
-    admin: boolean;
-    avatar: string;
+    email: string;
+    description?: string;
+    admin?: boolean;
+    avatar?: string;
 }
 // 发布一个帖子
 export interface Topic {

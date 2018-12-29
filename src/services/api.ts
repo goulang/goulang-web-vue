@@ -7,7 +7,7 @@ export default {
     // 登录
     login:prefix+"login/",
     // 注册
-    regist:prefix+"regist/",
+    register:prefix+"register/",
     // 帖子
     topics:prefix+"topics/", 
 }

@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.withCredentials = true
+axios.defaults.withCredentials = false
 axios.defaults.timeout = 100000
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 //axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
@@ -30,6 +30,7 @@ axios.interceptors.response.use(response => {
 
             case 401:
                 err.message = '未授权，请登录'
+                // window.onload.href = ""
                 break
 
             case 403:

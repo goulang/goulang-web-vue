@@ -1,5 +1,5 @@
 import apis from './api'
-import http from './http.js'
+import http from './http'
 
 import { Login, Register, Topic } from "./interface"
 export default class ApiService {
@@ -15,8 +15,7 @@ export default class ApiService {
     }
 
     static Register(params: Register) {
-        return http.post(apis.regist, params)
-
+        return http.post(apis.register, params)
     }
 
     // 帖子

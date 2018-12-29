@@ -1,25 +1,30 @@
 <template>
   <div class="app-register">
     <div class="gl-register">
-      <Form ref="formCustom" :model="formCustom">
+      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" >
         <FormItem>
           <div class="reg-title-box">
-            <h3>注册
-              <Icon type="ios-close" @click="handleClose" />
-            </h3>
+            <h3>注册<Icon type="ios-close"  @click="handleClose"  /></h3>
           </div>
         </FormItem>
-        <FormItem prop="username">
-          <Input type="text" placeholder="请输入用户名" v-model="formCustom.username"></Input>
+         <FormItem label="注册用户名" prop="name">
+            <Input v-model="formValidate.name" placeholder="请输入您要注册的用户名"></Input>
         </FormItem>
-        <FormItem prop="contact">
-          <Input type="text" placeholder="请输入手机号或邮箱" v-model="formCustom.contact"></Input>
+         <FormItem label="密码" prop="password">
+            <Input v-model="formValidate.password" placeholder="请输入密码"></Input>
         </FormItem>
-        <FormItem prop="pwd">
-          <Input type="password" placeholder="请输入密码" v-model="formCustom.pwd"></Input>
+         <FormItem label="确认密码" prop="passwordAgin">
+            <Input v-model="formValidate.passwordAgin" placeholder="请再次输入密码"></Input>
+        </FormItem>
+         <FormItem label="邮箱" prop="mail">
+            <Input v-model="formValidate.mail" placeholder="请填写邮箱"></Input>
         </FormItem>
         <FormItem>
-          <Button :style="{width:'100%'}" type="primary" :loading="upLoading" @click="handleSubmit('formCustom')">注册</Button>
+          <Button
+            :style="{width:'100%'}"
+            type="primary" 
+            @click="handleSubmit('formValidate')"
+          >注册</Button>
         </FormItem>
         <div class="login text-center">
           <a @click="handleLogin">已有账户登录</a>
@@ -47,6 +52,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import ApiService from "../../services/";
 @Component
 export default class RegisterPage extends Vue {
   constructor() {
@@ -54,45 +60,48 @@ export default class RegisterPage extends Vue {
   }
   data() {
     return {
-      formCustom: {
-        username: "", //用户名
-        contact: "", //联系方式
-        pwd: "" //密码
+      formValidate:{
+        name:"",
+        password:"",
+        passwordAgin:"",
+        mail:"",
       },
-      upLoading: false,
+      ruleValidate:{
+        name:[{required:true, message: "注册的用户名不能为空", trigger: 'blur'},
+        {required:true,pattern: /^.{5,20}$/, message: "请输入5-20位的字符", trigger: 'blur' ,transform(value) {return (value).trim();}}],
+        password:[{required:true,type: 'string', message: "注册的密码不能为空", trigger: 'blur'},
+        {required:true, pattern: /^.{5,20}$/, message: "请输入5-20位的字符", trigger: 'blur'}],
+        passwordAgin:[{required:true,type: 'string', message: "注册的密码不能为空", trigger: 'blur'},
+        {required:true, pattern: /^.{5,20}$/, message: "请输入5-20位的字符", trigger: 'blur'}],
+        mail:[{required:true,  type: 'email',message: "邮箱不能为空", trigger: 'blur'}]
+      } 
     };
   }
-  handleSubmit(name: string) {
-    this.$data.upLoading = true;
-    if (
-      this.$data.formCustom.username != "" &&
-      this.$data.formCustom.pwd != "" &&
-      this.$data.formCustom.contact != ""
-    ) {
-      this.$Message.success("注册成功!");
-      this.$data.upLoading = false;
-      return;
-    }
-    if (this.$data.formCustom.username == "") {
-      this.$Message.error("请用户名!");
-      this.$data.upLoading = false;
-      return;
-    } else if (this.$data.formCustom.contact == "") {
-      this.$Message.error("请输入手机号或邮箱!");
-      this.$data.upLoading = false;
-      return;
-    } else if (this.$data.formCustom.pwd == "") {
-      this.$Message.error("请输入密码!");
-      this.$data.upLoading = false;
-      return;
-    } else {
-      this.$Message.error("注册失败!");
-      this.$data.upLoading = false;
-      return;
-    }
-  }
+  handleSubmit (name:any) {
+      this.$refs[name]["validate"]((valid) => {
+          if (valid) {
+              this.Register()
+          } else {
+              this.$Message.error("请检查!");
+          }
+      })
+  } 
+  Register = () => {
+    //     formCustom
+    // username
+    // contact
+    // pwd
+    let name = this.$data.formCustom.username,
+      password = this.$data.formCustom.pwd,
+      email = this.$data.formCustom.contact;
+    ApiService.Register({
+      name,
+      password,
+      email
+    });
+  };
   //切换登录
-  handleLogin (){
+  handleLogin() {
     this.$store.commit("login/toggleLoginComponent");
     this.$store.commit("register/toggleRegisterComponent");
   }
