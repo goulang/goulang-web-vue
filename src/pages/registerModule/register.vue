@@ -123,13 +123,11 @@ export default class RegisterPage extends Vue {
     // contact
     // pwd
     // console.log(2)
-    let name = this.$data.formValidate.name,
-      password = this.$data.formValidate.password,
-      email = this.$data.formValidate.mail;
+    let email = this.$data.formValidate.email,
+      password = this.$data.formValidate.password
     ApiService.Register({
-      name,
+      email,
       password,
-      email
     }).then((res: any) => {
       // console.log(res)
       if (res.errorCode == 1000) {
