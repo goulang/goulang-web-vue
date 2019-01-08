@@ -1,17 +1,17 @@
 // 登录
 export interface Login {
-    name: string;
+    email: string;
     password: string;
 }
 // 注册
 export interface Register {
-    name: string;
-    password: string;
+    name?: string;
     email: string;
+    password: string;
     description?: string;
     admin?: boolean;
     avatar?: string;
-}
+} 
 // 发布一个帖子
 export interface Topic {
     title: string;

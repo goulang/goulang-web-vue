@@ -11,12 +11,12 @@
           <h3>登录<Icon type="ios-close" @click="handleClose" /></h3>
         </div>
               <FormItem
-          label="用户名"
-          prop="name"
+          label="邮箱"
+          prop="email"
         >
           <Input
-            v-model="formValidate.name"
-            placeholder="请输入您的用户名"
+            v-model="formValidate.email"
+            placeholder="请输入您的登录邮箱"
           ></Input>
         </FormItem>
         <FormItem
@@ -73,17 +73,16 @@ export default class LoginPage extends Vue {
   data (){
     return {
       upLoading:false,
-   formValidate: {
-        name: "admin",
+      formValidate: {
+        email: "891177434@qq.com",
         password: "123456"
       },
       ruleValidate: {
-        name: [
-          { required: true, message: "用户名不能为空", trigger: "blur" },
+            email: [
           {
             required: true,
-            pattern: /^.{5,20}$/,
-            message: "请输入5-20位的字符",
+            type: "email",
+            message: "邮箱不能为空",
             trigger: "blur"
           }
         ],
@@ -119,10 +118,10 @@ export default class LoginPage extends Vue {
     // contact
     // pwd
     // console.log(2)
-    let name = this.$data.formValidate.name,
+    let email = this.$data.formValidate.email,
       password = this.$data.formValidate.password 
     ApiService.Login({
-      name,
+      email,
       password      
     }).then((res: any) => {
       console.log(res)

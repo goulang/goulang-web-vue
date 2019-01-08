@@ -17,12 +17,12 @@
           </div>
         </FormItem>
         <FormItem
-          label="注册用户名"
-          prop="name"
+          label="邮箱"
+          prop="email"
         >
           <Input
-            v-model="formValidate.name"
-            placeholder="请输入您要注册的用户名"
+            v-model="formValidate.email"
+            placeholder="请填写邮箱"
           ></Input>
         </FormItem>
         <FormItem
@@ -34,24 +34,7 @@
             placeholder="请输入密码"
           ></Input>
         </FormItem>
-        <FormItem
-          label="确认密码"
-          prop="passwordAgin"
-        >
-          <Input
-            v-model="formValidate.passwordAgin"
-            placeholder="请再次输入密码"
-          ></Input>
-        </FormItem>
-        <FormItem
-          label="邮箱"
-          prop="mail"
-        >
-          <Input
-            v-model="formValidate.mail"
-            placeholder="请填写邮箱"
-          ></Input>
-        </FormItem>
+
         <FormItem>
           <Button
             :style="{width:'100%'}"
@@ -86,7 +69,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ApiService from "../../services/";
-import { setTimeout } from 'timers';
+import { setTimeout } from "timers";
 @Component
 export default class RegisterPage extends Vue {
   constructor() {
@@ -95,18 +78,15 @@ export default class RegisterPage extends Vue {
   data() {
     return {
       formValidate: {
-        name: "admin",
-        password: "123456",
-        passwordAgin: "123456",
-        mail: "891177434@qq.com"
+        email: "891177434@qq.com",
+        password: "123456"
       },
       ruleValidate: {
-        name: [
-          { required: true, message: "注册的用户名不能为空", trigger: "blur" },
+        email: [
           {
             required: true,
-            pattern: /^.{5,20}$/,
-            message: "请输入5-20位的字符",
+            type: "email",
+            message: "邮箱不能为空",
             trigger: "blur"
           }
         ],
@@ -123,31 +103,9 @@ export default class RegisterPage extends Vue {
             message: "请输入5-20位的字符",
             trigger: "blur"
           }
-        ],
-        passwordAgin: [
-          {
-            required: true,
-            type: "string",
-            message: "注册的密码不能为空",
-            trigger: "blur"
-          },
-          {
-            required: true,
-            pattern: /^.{5,20}$/,
-            message: "请输入5-20位的字符",
-            trigger: "blur"
-          }
-        ],
-        mail: [
-          {
-            required: true,
-            type: "email",
-            message: "邮箱不能为空",
-            trigger: "blur"
-          }
         ]
       },
-      timer:null
+      timer: null
     };
   }
   handleSubmit(name: string) {
@@ -175,10 +133,10 @@ export default class RegisterPage extends Vue {
     }).then((res: any) => {
       // console.log(res)
       if (res.errorCode == 1000) {
-        this.$Message.success({content:"注册成功!请安心服用"});
-        this.$data.timer = setTimeout(()=>{
-          this.handleClose()
-        },2000)
+        this.$Message.success({ content: "注册成功!请安心服用" });
+        this.$data.timer = setTimeout(() => {
+          this.handleClose();
+        }, 2000);
       }
     });
   }
