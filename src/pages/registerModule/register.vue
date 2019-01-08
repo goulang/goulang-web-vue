@@ -134,11 +134,56 @@ export default class RegisterPage extends Vue {
       // console.log(res)
       if (res.errorCode == 1000) {
         this.$Message.success({ content: "注册成功!请安心服用" });
+
         this.$data.timer = setTimeout(() => {
           this.handleClose();
+          this.Login();
         }, 2000);
       }
     });
+  }
+  Login() {
+    //     formCustom
+    // username
+    // contact
+    // pwd
+    // console.log(2)
+    let email = this.$data.formValidate.email,
+      password = this.$data.formValidate.password;
+    ApiService.Login({
+      email,
+      password
+    })
+      .then((res: any) => {
+        // this.$store.commit("login/toggleIsLogin", true);
+        // console.log(res);
+        if (res.errno == 0) {
+          this.$Message.success({
+            content: "登录成功,2s后自动刷新!"
+          });
+          this.$data.timer = setTimeout(() => {
+            this.$store.commit("login/toggleLoginComponent");
+            this.$store.commit("login/toggleIsLogin", true);
+            location.reload();
+          }, 1500);
+        } else {
+          this.$Message.warning({
+            content: "用户名或密码错误!"
+          });
+        }
+
+        // if (res.errorCode == 1000) {
+        //   this.$Message.success({content:"注册成功!请安心服用"});
+        //   this.$data.timer = setTimeout(()=>{
+        //     this.handleClose()
+        //   },2000)
+        // }
+      })
+      .catch(err => {
+        this.$Message.warning({
+          content: "用户名或密码错误!"
+        });
+      });
   }
   //切换登录
   handleLogin() {

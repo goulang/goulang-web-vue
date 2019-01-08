@@ -1,44 +1,109 @@
 <template>
   <Affix>
     <nav class="gl-nav">
-      <Row type="flex" class="header-main">
-        <Col offset="2" span="2" class="gl-logo clearfix">
-          <img src="@/assets/imgs/go.png" class="gl-logo-img" alt="gl-logo" @click="goulang()">
+      <Row
+        type="flex"
+        class="header-main"
+      >
+        <Col
+          offset="2"
+          span="2"
+          class="gl-logo clearfix"
+        >
+        <img
+          src="@/assets/imgs/go.png"
+          class="gl-logo-img"
+          alt="gl-logo"
+          @click="goulang()"
+        >
         </Col>
-        <Col span="10" class="nav-main-col">
+        <Col
+          span="10"
+          class="nav-main-col"
+        >
         <div class="nav-main">
           <ul class="nav-main-box clearfix">
-            <li class="nav-main-item" :class="{'current-nav':index==tabIndex}" v-for="(item,index) of tabJson" :key="index">
+            <li
+              class="nav-main-item"
+              :class="{'current-nav':index==tabIndex}"
+              v-for="(item,index) of tabJson"
+              :key="index"
+            >
               <span @click="showContent(item,index)">{{item.title}}</span>
             </li>
           </ul>
         </div>
         </Col>
         <!-- this is goulang's search,maybe you can find something -->
-        <Col class="search-box clearfix" span="6">
-        <Input search placeholder="搜索 GouLang..." class="search-ipt" />
+        <Col
+          class="search-box clearfix"
+          span="6"
+        >
+        <Input
+          search
+          placeholder="搜索 GouLang..."
+          class="search-ipt"
+        />
         </Col>
-        <Col span="6" class="gl-user-box clearfix">
-        <div v-if="!isLogin" class="login-btn">
-          <Button type="primary" icon="md-paper-plane" shape="circle" class="sign-in" @click="showContent('login')">登陆</Button>
-          <Button type="dashed" icon="md-add" shape="circle" class="sign-up" @click="showContent('register')">注册</Button>
+        <Col
+          span="6"
+          class="gl-user-box clearfix"
+        >
+        <div
+          v-if="!isLogin"
+          class="login-btn"
+        >
+          <Button
+            type="primary"
+            icon="md-paper-plane"
+            shape="circle"
+            class="sign-in"
+            @click="showContent('login')"
+          >登陆</Button>
+          <Button
+            type="dashed"
+            icon="md-add"
+            shape="circle"
+            class="sign-up"
+            @click="showContent('register')"
+          >注册</Button>
         </div>
-        <div v-else class="gl-user-info">
+        <div
+          v-else
+          class="gl-user-info"
+        >
           <div class="gl-user-avatar">
             <Dropdown>
               <a href="javascript:void(0)">
-                <img src="@/assets/imgs/logo.jpg" alt="">
+                <img
+                  src="@/assets/imgs/logo.jpg"
+                  alt=""
+                >
               </a>
               <DropdownMenu slot="list">
-                <DropdownItem v-for="(item, index) in userJson" :key="index">
+                <DropdownItem
+                  v-for="(item, index) in userJson"
+                  :key="index"
+                >
                   <span @click="handleUserList(item,index)">{{item.title}}</span>
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
           <!-- <Button class="writing" type="info" icon="md-create" ghost>发布</Button> -->
-          <Button class="writing" @click="handlePublishToggle" type="info" icon="ios-paper-outline" ghost>发布</Button>
-          <Button @click="showContent('inform')" shape="circle" title="通知" icon="ios-notifications-outline"></Button>
+          <Button
+            class="writing"
+            @click="handlePublishToggle"
+            type="info"
+            icon="ios-paper-outline"
+            ghost
+          >发布</Button>
+          <Button
+            @click="showContent('inform')"
+            shape="circle"
+            title="通知"
+            icon="ios-notifications-outline"
+          ></Button>
         </div>
         </Col>
       </Row>
@@ -49,19 +114,20 @@
 import { tabJson } from "@/assets/json/tabJson";
 import { userJson } from "@/assets/json/userJson";
 import { Component, Vue } from "vue-property-decorator";
+import Cookie from "js-cookie"
 @Component
 export default class Appheader extends Vue {
   constructor() {
     super();
   }
-  tabJson  : Array<object> = tabJson;
-  userJson : Array<object> = userJson;
+  tabJson: Array<object> = tabJson;
+  userJson: Array<object> = userJson;
   tabIndex = 0;
 
-  data () {
+  data() {
     return {
-      isLogin: false,
-    }
+      isLogin:  this.$store.state.login.isLogin
+    };
   }
 
   /* 本页面组件通用函数STR*/
@@ -98,7 +164,7 @@ export default class Appheader extends Vue {
       : 0;
     this.pushRouter(name);
     this.navStyle(currentIndex);
-    this.handleGetLoginStatus()
+    // this.handleGetLoginStatus();
   }
 
   // 跳转页面路由,禁止修改
@@ -118,7 +184,7 @@ export default class Appheader extends Vue {
         return;
       }
       default: {
-        console.log("#c 没有有效的路由","color:#ff0");
+        console.log("#c 没有有效的路由", "color:#ff0");
       }
     }
     if (item == undefined) {
@@ -126,7 +192,7 @@ export default class Appheader extends Vue {
     }
     let routeName: string = item["name"];
     let currentIndex: number = index;
-    
+
     this.navStyle(currentIndex);
     this.pushRouter(routeName);
   }
@@ -137,47 +203,56 @@ export default class Appheader extends Vue {
   }
 
   //登录状态
-  handleGetLoginStatus (){
-    this.$data.isLogin = localStorage.getItem("login");
+  handleGetLoginStatus() {
+    let isLogin = this.$store.state.login.isLogin;
+    // console.log(this.$store.state.login.isLogin)
+    this.$data.isLogin = isLogin;
     // if (this.$data.isLogin) {
 
     // }
   }
 
   //用户头像下面的列表跳转
-  handleUserList (item: any, idx: number) :void {
-    console.log(item["name"])
+  handleUserList(item: any, idx: number): void {
+    // console.log(item["name"])
     this.navStyle(-1);
-    this.pushRouter(item["name"])
+    this.pushRouter(item["name"]);
     switch (item["name"]) {
       case "exit": {
-        localStorage.removeItem("login");
+        // localStorage.removeItem("login");
+        this.logout()
+        // return
         this.navStyle(0);
         this.pushRouter("home");
         location.reload();
-        return
+        return;
       }
       default: {
-        console.log("#c 没有有效的路由","color:#ff0");
+        console.log("#c 没有有效的路由", "color:#ff0");
       }
     }
   }
-
+  // 退出功能
+  logout() {
+    // console.log(1)
+  
+      Cookie.remove('goulang');
+    // this.$store.commit("login/toggleIsLogin",true)
+  }
   //通知
-  handleInform (){
+  handleInform() {
     // this.$store.commit("inform/toggleInformComponent");
   }
 
   //发布
-  handlePublishToggle () {
+  handlePublishToggle() {
     this.$store.commit("publish/togglePublishComponent");
     // console.log(this.$store.state.publish.publishComponentToggle)
   }
-
 }
 </script>
 <style scoped lang="scss">
-i{
+i {
   font-size: 32px;
   color: #2d8cf0;
 }
@@ -342,7 +417,7 @@ i{
       float: left;
       margin-left: 31.6px;
       text-align: right;
-      .login-btn{
+      .login-btn {
         .sign-in {
           margin-right: 5px;
         }
@@ -350,37 +425,37 @@ i{
           margin-left: 5px;
         }
       }
-      .gl-user-info{
+      .gl-user-info {
         padding: 0 20px;
-        button{
+        button {
           margin-right: 25px;
         }
-        .writing{
+        .writing {
           border-color: #dcdee2;
           color: #999;
-          &:hover{
+          &:hover {
             color: #1396ff;
             border-color: #1396ff;
           }
         }
-        .gl-user-avatar{
+        .gl-user-avatar {
           text-align: left;
           float: right;
           width: 32px;
           height: 32px;
-          a{
+          a {
             display: inline-block;
             width: 100%;
             height: 100%;
-            img{
+            img {
               width: 100%;
               height: 100%;
               border-radius: 50%;
             }
           }
-          .ivu-dropdown-item{
+          .ivu-dropdown-item {
             padding: 0;
-            span{
+            span {
               display: inline-block;
               width: 100%;
               padding: 7px 16px;
