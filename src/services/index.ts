@@ -11,7 +11,7 @@ export default class ApiService {
 
     // 登录,登录之后 用js-cookie库 或者手写, 保存一下cookie,返回的东西是啥就是啥
     static Login(params: Login) {
-        return http.post(apis.login, xw(params))
+        return http.post(apis.login, fd(params))
     }
 
     static Register(params: Register) {

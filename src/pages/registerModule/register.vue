@@ -1,28 +1,61 @@
 <template>
   <div class="app-register">
     <div class="gl-register">
-      <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" >
+      <Form
+        ref="formValidate"
+        :model="formValidate"
+        :rules="ruleValidate"
+      >
         <FormItem>
           <div class="reg-title-box">
-            <h3>注册<Icon type="ios-close"  @click="handleClose"  /></h3>
+            <h3>注册
+              <Icon
+                type="ios-close"
+                @click="handleClose"
+              />
+            </h3>
           </div>
         </FormItem>
-         <FormItem label="注册用户名" prop="name">
-            <Input v-model="formValidate.name" placeholder="请输入您要注册的用户名"></Input>
+        <FormItem
+          label="注册用户名"
+          prop="name"
+        >
+          <Input
+            v-model="formValidate.name"
+            placeholder="请输入您要注册的用户名"
+          ></Input>
         </FormItem>
-         <FormItem label="密码" prop="password">
-            <Input v-model="formValidate.password" placeholder="请输入密码"></Input>
+        <FormItem
+          label="密码"
+          prop="password"
+        >
+          <Input
+            v-model="formValidate.password"
+            placeholder="请输入密码"
+          ></Input>
         </FormItem>
-         <FormItem label="确认密码" prop="passwordAgin">
-            <Input v-model="formValidate.passwordAgin" placeholder="请再次输入密码"></Input>
+        <FormItem
+          label="确认密码"
+          prop="passwordAgin"
+        >
+          <Input
+            v-model="formValidate.passwordAgin"
+            placeholder="请再次输入密码"
+          ></Input>
         </FormItem>
-         <FormItem label="邮箱" prop="mail">
-            <Input v-model="formValidate.mail" placeholder="请填写邮箱"></Input>
+        <FormItem
+          label="邮箱"
+          prop="mail"
+        >
+          <Input
+            v-model="formValidate.mail"
+            placeholder="请填写邮箱"
+          ></Input>
         </FormItem>
         <FormItem>
           <Button
             :style="{width:'100%'}"
-            type="primary" 
+            type="primary"
             @click="handleSubmit('formValidate')"
           >注册</Button>
         </FormItem>
@@ -53,6 +86,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ApiService from "../../services/";
+import { setTimeout } from 'timers';
 @Component
 export default class RegisterPage extends Vue {
   constructor() {
@@ -60,34 +94,72 @@ export default class RegisterPage extends Vue {
   }
   data() {
     return {
-      formValidate:{
-        name:"admin",
-        password:"123456",
-        passwordAgin:"123456",
-        mail:"891177434@qq.com",
+      formValidate: {
+        name: "admin",
+        password: "123456",
+        passwordAgin: "123456",
+        mail: "891177434@qq.com"
       },
-      ruleValidate:{
-        name:[{required:true, message: "注册的用户名不能为空", trigger: 'blur'},
-        {required:true,pattern: /^.{5,20}$/, message: "请输入5-20位的字符", trigger: 'blur' }],
-        password:[{required:true,type: 'string', message: "注册的密码不能为空", trigger: 'blur'},
-        {required:true, pattern: /^.{5,20}$/, message: "请输入5-20位的字符", trigger: 'blur'}],
-        passwordAgin:[{required:true,type: 'string', message: "注册的密码不能为空", trigger: 'blur'},
-        {required:true, pattern: /^.{5,20}$/, message: "请输入5-20位的字符", trigger: 'blur'}],
-        mail:[{required:true,  type: 'email',message: "邮箱不能为空", trigger: 'blur'}]
-      } 
+      ruleValidate: {
+        name: [
+          { required: true, message: "注册的用户名不能为空", trigger: "blur" },
+          {
+            required: true,
+            pattern: /^.{5,20}$/,
+            message: "请输入5-20位的字符",
+            trigger: "blur"
+          }
+        ],
+        password: [
+          {
+            required: true,
+            type: "string",
+            message: "注册的密码不能为空",
+            trigger: "blur"
+          },
+          {
+            required: true,
+            pattern: /^.{5,20}$/,
+            message: "请输入5-20位的字符",
+            trigger: "blur"
+          }
+        ],
+        passwordAgin: [
+          {
+            required: true,
+            type: "string",
+            message: "注册的密码不能为空",
+            trigger: "blur"
+          },
+          {
+            required: true,
+            pattern: /^.{5,20}$/,
+            message: "请输入5-20位的字符",
+            trigger: "blur"
+          }
+        ],
+        mail: [
+          {
+            required: true,
+            type: "email",
+            message: "邮箱不能为空",
+            trigger: "blur"
+          }
+        ]
+      },
+      timer:null
     };
   }
-  handleSubmit (name:string) {
-    
-      // this.$refs[name]["validate"]((valid) => {
-      //     if (valid) {
-              this.Register()
-      //     } else {
-      //         this.$Message.error("请检查!");
-      //     }
-      // })
-  } 
-  Register () {
+  handleSubmit(name: string) {
+    // this.$refs[name]["validate"]((valid) => {
+    //     if (valid) {
+    this.Register();
+    //     } else {
+    //         this.$Message.error("请检查!");
+    //     }
+    // })
+  }
+  Register() {
     //     formCustom
     // username
     // contact
@@ -100,11 +172,16 @@ export default class RegisterPage extends Vue {
       name,
       password,
       email
-    })
-    .then(res=>{
-      console.log(res)
-    })
-  };
+    }).then((res: any) => {
+      // console.log(res)
+      if (res.errorCode == 1000) {
+        this.$Message.success({content:"注册成功!请安心服用"});
+        this.$data.timer = setTimeout(()=>{
+          this.handleClose()
+        },2000)
+      }
+    });
+  }
   //切换登录
   handleLogin() {
     this.$store.commit("login/toggleLoginComponent");

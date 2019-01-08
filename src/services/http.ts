@@ -1,9 +1,9 @@
 import axios from 'axios'
-axios.defaults.withCredentials = false
+axios.defaults.withCredentials = true
 axios.defaults.timeout = 100000
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 //axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8"
 axios.interceptors.request.use(config => {
     return config
 });

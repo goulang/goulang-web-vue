@@ -1,21 +1,35 @@
 <template>
   <div class="gl-modal">
     <div class="gl-login">
-      <Form ref="formCustom" :model="formCustom">
+      <Form   ref="formValidate"
+        :model="formValidate"
+        :rules="ruleValidate">
         <div class="mascot-box">
           <img width="100%" src="@/assets/imgs/login.png" alt="">
         </div>
         <div class="login-title-box">
           <h3>登录<Icon type="ios-close" @click="handleClose" /></h3>
         </div>
-        <FormItem prop="username">
-          <Input type="text" placeholder="请输入手机号或邮箱" v-model="formCustom.username"></Input>
+              <FormItem
+          label="用户名"
+          prop="name"
+        >
+          <Input
+            v-model="formValidate.name"
+            placeholder="请输入您的用户名"
+          ></Input>
         </FormItem>
-        <FormItem prop="pwd">
-          <Input type="password" placeholder="请输入密码" v-model="formCustom.pwd"></Input>
+        <FormItem
+           label="密码"
+          prop="password"
+        >
+          <Input
+            v-model="formValidate.password"
+            placeholder="请输入密码"
+          ></Input>
         </FormItem>
         <FormItem>
-          <Button :style="{width:'100%'}" type="primary" :loading="upLoading" @click="handleSubmit('formCustom')">登录</Button>
+          <Button :style="{width:'100%'}" type="primary" :loading="upLoading" @click="handleSubmit('formValidate')">登录</Button>
         </FormItem>
         <FormItem :style="{marginBottom:'0'}">
           <div class="register">
@@ -49,6 +63,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 // import store from '@/vuex';
+import ApiService from "../../services/";
+
 @Component
 export default class LoginPage extends Vue {
   constructor() {
@@ -56,35 +72,67 @@ export default class LoginPage extends Vue {
   }
   data (){
     return {
-      formCustom: {
-        username: '',   //用户名
-        pwd: '',      //密码
+      upLoading:false,
+   formValidate: {
+        name: "admin",
+        password: "123456"
       },
-      upLoading: false,
+      ruleValidate: {
+        name: [
+          { required: true, message: "用户名不能为空", trigger: "blur" },
+          {
+            required: true,
+            pattern: /^.{5,20}$/,
+            message: "请输入5-20位的字符",
+            trigger: "blur"
+          }
+        ],
+        password: [
+          {
+            required: true,
+            type: "string",
+            message: "密码不能为空",
+            trigger: "blur"
+          },
+          {
+            required: true,
+            pattern: /^.{5,20}$/,
+            message: "请输入5-20位的字符",
+            trigger: "blur"
+          }
+        ]
+      },
     }
   }
-  handleSubmit (name:string) {
-    this.$data.upLoading = true;
-    if(this.$data.formCustom.username != "" && this.$data.formCustom.pwd != ""){
-      this.$Message.success("登录成功!");
-      this.$data.upLoading = false;
-      this.handleAddLoginStatus();
-      location.reload()
-      return
-    }
-    if (this.$data.formCustom.username == "") {
-      this.$Message.error("请输入手机号或邮箱!");
-      this.$data.upLoading = false;
-      return
-    } else if(this.$data.formCustom.pwd == "") {
-      this.$Message.error("请输入密码!");
-    this.$data.upLoading = false;
-      return
-    } else {
-      this.$Message.error('登录失败!');
-      this.$data.upLoading = false;
-      return;
-    }
+  handleSubmit(name: string) {
+    // this.$refs[name]["validate"]((valid) => {
+    //     if (valid) {
+    this.Login();
+    //     } else {
+    //         this.$Message.error("请检查!");
+    //     }
+    // })
+  }
+    Login() {
+    //     formCustom
+    // username
+    // contact
+    // pwd
+    // console.log(2)
+    let name = this.$data.formValidate.name,
+      password = this.$data.formValidate.password 
+    ApiService.Login({
+      name,
+      password      
+    }).then((res: any) => {
+      console.log(res)
+      // if (res.errorCode == 1000) {
+      //   this.$Message.success({content:"注册成功!请安心服用"});
+      //   this.$data.timer = setTimeout(()=>{
+      //     this.handleClose()
+      //   },2000)
+      // }
+    });
   }
   //切换注册
   handleRegister (){

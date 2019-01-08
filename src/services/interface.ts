@@ -1,7 +1,7 @@
 // 登录
 export interface Login {
     name: string;
-    age: string;
+    password: string;
 }
 // 注册
 export interface Register {

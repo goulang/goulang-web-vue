@@ -1,4 +1,4 @@
-export const baseURL = "http://localhost:8080/" 
+export const baseURL = "/" 
 // const apiPrefix = "/"
 // const prefix = baseURL + apiPrefix
 const prefix = baseURL
