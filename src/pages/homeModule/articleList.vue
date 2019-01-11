@@ -83,13 +83,16 @@
 <script lang="ts">
 import { articleJson } from "@/assets/json/homeJson";
 import { Component, Vue } from "vue-property-decorator";
+import ApiService from '@/services';
 // import store from '@/vuex/index';
 // import {mapMutations} from 'vuex';
 @Component
 export default class ArticlePage extends Vue {
   constructor() {
-    super();
+    super(); 
   }
+  page:string = "1"
+  limit:string="10"
   /**
    * articleJson  文章列表
    * asideJson    侧 边 栏
@@ -100,13 +103,25 @@ export default class ArticlePage extends Vue {
   maxLen: number = 10;
   minLen: number = 0;
   created(): void {
-    if (articleJson.length < 10) {
-      this.maxLen = articleJson.length;
-    } else {
-      this.maxLen = 10;
-    }
-    this.listData = articleJson.slice(this.minLen, this.maxLen);
-    return this.$store.state.attention;
+    this.GetTopics()
+    // if (articleJson.length < 10) {
+    //   this.maxLen = articleJson.length;
+    // } else {
+    //   this.maxLen = 10;
+    // }
+    // this.listData = articleJson.slice(this.minLen, this.maxLen);
+    // return this.$store.state.attention;
+  }
+  GetTopics (){
+    ApiService.GetTopics({
+      page:this.page,
+      limit:this.limit,
+    })
+    .then((res:any)=>{
+      // console.log(res)
+        this.listData =res.list
+        this.page = res.page+1;
+    })
   }
   handleAttention(obj: any, idx: number): void {
     this.articleJson.splice(

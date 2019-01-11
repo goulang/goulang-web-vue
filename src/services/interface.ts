@@ -20,3 +20,9 @@ export interface Topic {
     userID: string;
 
 }
+// 帖子首页
+export interface TopicList {
+    page: string;
+    limit: string; 
+
+}

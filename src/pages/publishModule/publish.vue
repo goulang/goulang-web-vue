@@ -92,7 +92,7 @@ export default class PublishPage extends Vue {
     this.$store.commit("publish/togglePublishComponent");
   }
   handleEditor (name: string) {
-    this.$router.replace({
+    this.$router.push({
       name
     });
     // 关闭发布选项弹窗

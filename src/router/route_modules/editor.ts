@@ -1,4 +1,4 @@
-const Editor = () => import(/* webpackChunkName: "editor" */ '@/components/editor/editor.vue')
+const Editor = () => import(/* webpackChunkName: "editor" */ '@/pages/publishModule/editor.vue')
 const EditorRouteList = [
     {
         path: "/editor",

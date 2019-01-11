@@ -32,10 +32,11 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    
   ],
   "exclude": [
     "node_modules"
   ],
-  "files": ["./ts/js-cookie.d.ts"]
+  "files": ["./ts/js-cookie.d.ts","./ts/scriptjs.d.ts","./ts/vue-quill-editor.d.ts"]
 }

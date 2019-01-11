@@ -1,7 +1,7 @@
 import apis from './api'
 import http from './http'
 
-import { Login, Register, Topic } from "./interface"
+import { Login, Register, Topic ,TopicList} from "./interface"
 export default class ApiService {
     //获取资源的完整路径
     static GetAssetURL(url: string) {
@@ -24,7 +24,7 @@ export default class ApiService {
 
     // 帖子
     // 得到全部的帖子
-    static GetTopics() {
+    static GetTopics(params:TopicList) {
         return http.get(apis.topics)
     }
     // 得到具体的某一个帖子

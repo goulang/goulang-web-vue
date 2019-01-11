@@ -1,4 +1,5 @@
 import axios from 'axios'
+ 
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 100000
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
@@ -7,6 +8,7 @@ axios.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded
 axios.interceptors.request.use(config => {
     return config
 });
+
 axios.interceptors.response.use(response => {
     return response.data
     // const data = response.data
