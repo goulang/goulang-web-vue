@@ -33,7 +33,7 @@ export default class ApiService {
     }
     // 新增帖子,发帖
     static PublicTopics(topics: Topic) {
-        return http.post(apis.topics, fd(topics))
+        return http.post(apis.topics ,topics)
     }
     // 通过id更新一个帖子,第一个参数是id,第二个是内容,第二个是对象
     static PutTopics(topicID: string, topics: Topic) {

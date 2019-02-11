@@ -35,10 +35,11 @@
                     </h3>
                   </div>
                   <div v-if="item.content.length>='110'" :title="item.content" dir="auto" class="post-list-item-content truncate-lines truncate-lines-3">
-                    {{item.content}}
+                    <span v-html="item.content.replace(/(^\s*)|(\s*$)/img, '')"></span>
                   </div>
                   <div v-else dir="auto" class="post-list-item-content truncate-lines truncate-lines-3">
-                    {{item.content}}
+                    <span v-html="item.content.replace(/(^\s*)|(\s*$)/img, '')"></span>
+                    
                   </div>
                 </div>
               </div>

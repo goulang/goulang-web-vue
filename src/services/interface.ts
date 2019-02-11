@@ -14,15 +14,15 @@ export interface Register {
 } 
 // 发布一个帖子
 export interface Topic {
-    title: string;
-    content: string;
-    view: string;
-    userID: string;
+    title?: string;
+    content?: string;
+    description?:string,
+    view?: string;
+    userID?: string;
 
 }
 // 帖子首页
 export interface TopicList {
     page: string;
-    limit: string; 
-
+    limit: string;  
 }

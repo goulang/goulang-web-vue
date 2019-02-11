@@ -10,8 +10,17 @@
         @blur="onEditorBlur($event)"
         @focus="onEditorFocus($event)"
         @change="onEditorChange($event)"
+        class="quill-editor"
       >
       </quill-editor>
+    </div>
+    <div class="bottom">
+      <Button
+        type="success"
+        long
+        class="submit"
+        @click="submit"
+      >发布</Button>
     </div>
   </div>
 </template>
@@ -26,9 +35,10 @@ export default {
   },
   data() {
     return {
-      content: `请输入您要发布的内容`,
+      content: "",
+      value: "",
       editorOption: {
-        
+        placeholder: "请输入您要发布的内容"
       }
     };
   },
@@ -36,9 +46,23 @@ export default {
     onEditorReady(editor) {
       // 准备编辑器
     },
-    onEditorBlur() {}, // 失去焦点事件
-    onEditorFocus() {}, // 获得焦点事件
-    onEditorChange() {} // 内容改变事件
+    onEditorBlur(editor) {
+      // console.log(editor);
+    }, // 失去焦点事件
+    onEditorFocus(editor) {
+      // console.log(editor);
+    }, // 获得焦点事件
+    onEditorChange(editor) {
+      // console.log(editor);
+      this.$data.value = editor.text;
+    }, // 内容改变事件
+    submit() {
+      // console.log(this.$data.content)
+      this.$emit("resultContent", {
+        content: this.$data.content,
+        value: this.$data.value
+      });
+    }
   },
   computed: {
     editor() {
@@ -55,7 +79,24 @@ export default {
     width: 90%;
     margin: 0 auto;
     height: 600px;
+    margin-bottom: 80px;
+    .quill-editor {
+      height: 600px;
       background-color: #fff;
+
+      //   width: 100%;
+      //   height: 400px;
+    }
+  }
+  .bottom {
+    width: 100%;
+
+    .submit {
+      width: 180px;
+      height: 40px;
+      float: right;
+      margin-right: 160px;
+    }
   }
 }
 </style>

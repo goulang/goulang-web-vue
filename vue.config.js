@@ -6,20 +6,20 @@
 
 
 module.exports = {
-    assetsDir:"./src/static",
+    // assetsDir:"./src/static",
 
     devServer: {
         port: 9000,
 
-        proxy: {
-            '/api/': {
-                target: 'http://localhost:8080',
-                changeOrigin: true,
-                pathRewrite: {
-                    '^/api': ''
-                }
-            },
-        }, 
+        // proxy: {
+        //     '/api/': {
+        //         target: 'http://localhost:8080',
+        //         changeOrigin: true,
+        //         pathRewrite: {
+        //             '^/api': ''
+        //         }
+        //     },
+        // }, 
     }
     // chainWebpack: config => {
 

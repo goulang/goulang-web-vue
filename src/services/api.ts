@@ -1,8 +1,8 @@
-export const baseURL = "http://localhost:9000/" 
+export const baseURL = "http://localhost:8080/" 
 // export const apiPrefix = "api/"
 // const apiPrefix = "/"
 // const prefix = baseURL + apiPrefix
-export const prefix = baseURL + "api/"
+export const prefix = baseURL    
 export default {
     BASE_URL:prefix,
     // 登录
