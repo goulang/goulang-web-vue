@@ -36,24 +36,25 @@
                 <div class="post-list-item">
                   <div class="post-list-item-title">
                     <h3
+                    @click="openDetail(item)"
                       v-if="item.title.length >= '55'"
                       class="truncate-lines truncate-lines-2"
                       dir="auto"
                     >
-                      <a
-                        target="_blank"
+                      <span
+                        class="title-curs"
                         :title="item.title"
-                        href="#"
-                      >{{item.title}}</a>
+                      >{{item.title}}</span>
                     </h3>
                     <h3
+                    @click="openDetail(item)"
                       v-else
                       dir="auto"
                     >
-                      <a
+                      <span
+                        class="title-curs"
                         target="_blank"
-                        href="#"
-                      >{{item.title}}</a>
+                      >{{item.title}}</span>
                     </h3>
                   </div>
                   <div
@@ -181,9 +182,9 @@ export default class ArticlePage extends Vue {
     var windowHeight =
       document.documentElement.clientHeight || document.body.clientHeight;
     var scrollHeight = document.body.scrollHeight;
-    console.log(scrollTop + windowHeight, scrollHeight);
+    // console.log(scrollTop + windowHeight, scrollHeight);
     if (scrollTop + windowHeight == scrollHeight) {
-      console.log("开始加载吧");
+      // console.log("开始加载吧");
       // if (this.page <= this.totalPage) {
       //   this.getList();
       this.GetTopics();
@@ -195,12 +196,12 @@ export default class ArticlePage extends Vue {
     window.removeEventListener("scroll", this.Scroll, true);
   }
   GetTopics() {
-    console.log(this.$data.page);
+    // console.log(this.$data.page);
     ApiService.GetTopics({
       page: this.$data.page
       // limit: this.limit
     }).then((res: any) => {
-      console.log(res);
+      // console.log(res);
       // 判断是不是最后一页了, 如果是最后一页了,什么都不做
       if (res.count <= res.page * res.limit) {
         return;
@@ -210,6 +211,13 @@ export default class ArticlePage extends Vue {
       this.$data.page = res.page + 1;
       // console.log(  this.$data.page)
     });
+  }
+  // 打开内容详情页面
+  openDetail (item:any) {
+    console.log(item)
+    this.$router.push({
+      path:`/d/${item.id}`
+    })
   }
   handleAttention(obj: any, idx: number): void {
     this.articleJson.splice(
@@ -280,8 +288,8 @@ article {
       .post-list {
         width: calc(75% - 20px);
         height: 100%;
-        .post-list-item {
-        }
+        // .post-list-item {
+        // }
       }
     }
     .post-header,
@@ -398,12 +406,14 @@ article {
           line-height: 28px;
           position: relative;
           vertical-align: middle;
+
           h3 {
             font-size: 22px;
             line-height: 1.25em;
             word-wrap: break-word;
             font-weight: 600;
           }
+          .title-curs,
           a {
             color: rgba(51, 51, 51, 0.95);
             &:hover {
@@ -414,6 +424,12 @@ article {
             }
             &:visited {
               color: rgba(51, 51, 51, 0.75);
+            }
+          }
+          .title-curs {
+            cursor: pointer;
+            &:hover {
+             color: #f60;
             }
           }
         }

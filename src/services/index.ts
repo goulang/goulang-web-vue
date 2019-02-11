@@ -31,7 +31,7 @@ export default class ApiService {
     }
     // 得到具体的某一个帖子
     static GetTopicsById(topicID: string) {
-        return http.get(apis.topics + topicID)
+        return http.get(apis.topics +"/" +topicID)
     }
     // 新增帖子,发帖
     static PublicTopics(topics: Topic) {
