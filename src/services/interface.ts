@@ -23,6 +23,6 @@ export interface Topic {
 }
 // 帖子首页
 export interface TopicList {
-    page: string;
-    limit: string;  
+    page?: string;
+    limit?: string;  
 }

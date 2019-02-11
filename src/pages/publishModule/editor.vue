@@ -25,6 +25,7 @@ import { Component, Vue } from "vue-property-decorator";
 import Editor from "@/components/editor/editor.vue";
 import ApiService from "@/services";
 import { request } from "http";
+import { setTimeout } from "timers";
 @Component({
   components: {
     Editor
@@ -60,15 +61,20 @@ export default class EditorPage extends Vue {
         title: this.$data.public.title,
         content: obj.content,
         // value:obj.value,
-        description 
+        description
       };
-      
 
       ApiService.PublicTopics(pubicForm).then((res: any) => {
         console.log(res);
         // if(res.status==200) {}
         if (res.error == 0) {
-          this.$router.back();
+          this.$Message.success({
+            content:"发布成功!", 
+          });
+
+          setTimeout(() => {
+            this.$router.back();
+          }, 60);
         }
       });
     }

@@ -2,7 +2,11 @@
   <article class="clearfix">
     <Col span="24">
     <ul id="posts">
-      <li class="post-container" v-for="(item,idx) of listData" :key="idx">
+      <li
+        class="post-container"
+        v-for="(item,idx) of listData"
+        :key="idx"
+      >
         <div class="post-full">
           <div class="post-wrapper">
             <div class="post-header">
@@ -12,7 +16,11 @@
                   <time>{{item.time}}</time>
                 </div>
                 <div class="post-author-attention">
-                  <a class="attention" @click="handleAttention(item,idx)" title="item.name">
+                  <a
+                    class="attention"
+                    @click="handleAttention(item,idx)"
+                    title="item.name"
+                  >
                     {{item.attention?'关注':'取消关注'}}
                   </a>
                 </div>
@@ -27,19 +35,42 @@
               <div class="post-list">
                 <div class="post-list-item">
                   <div class="post-list-item-title">
-                    <h3 v-if="item.title.length >= '55'" class="truncate-lines truncate-lines-2" dir="auto">
-                      <a target="_blank" :title="item.title" href="#">{{item.title}}</a>
+                    <h3
+                      v-if="item.title.length >= '55'"
+                      class="truncate-lines truncate-lines-2"
+                      dir="auto"
+                    >
+                      <a
+                        target="_blank"
+                        :title="item.title"
+                        href="#"
+                      >{{item.title}}</a>
                     </h3>
-                    <h3 v-else dir="auto">
-                      <a target="_blank" href="#">{{item.title}}</a>
+                    <h3
+                      v-else
+                      dir="auto"
+                    >
+                      <a
+                        target="_blank"
+                        href="#"
+                      >{{item.title}}</a>
                     </h3>
                   </div>
-                  <div v-if="item.content.length>='110'" :title="item.content" dir="auto" class="post-list-item-content truncate-lines truncate-lines-3">
-                    <span v-html="item.content.replace(/(^\s*)|(\s*$)/img, '')"></span>
+                  <div
+                    v-if="item.content.length>='110'"
+                    :title="item.content"
+                    dir="auto"
+                    class="post-list-item-content truncate-lines truncate-lines-3"
+                  >
+                    {{item.description}}
                   </div>
-                  <div v-else dir="auto" class="post-list-item-content truncate-lines truncate-lines-3">
-                    <span v-html="item.content.replace(/(^\s*)|(\s*$)/img, '')"></span>
-                    
+                  <div
+                    v-else
+                    dir="auto"
+                    class="post-list-item-content truncate-lines truncate-lines-3"
+                  >
+                    {{item.description}}
+
                   </div>
                 </div>
               </div>
@@ -47,7 +78,10 @@
             <div class="post-footer clearfix">
               <div class="post-heat">
                 <div class="post-heat-count">
-                  <span class="heat-link-current" title="12,345喜欢">
+                  <span
+                    class="heat-link-current"
+                    title="12,345喜欢"
+                  >
                     12,345喜欢
                   </span>
                 </div>
@@ -55,13 +89,22 @@
               <div class="post-controls">
                 <div class="post-control-inner">
                   <div class="post-control share">
-                    <Icon type="ios-share-alt-outline" title="分享" />
+                    <Icon
+                      type="ios-share-alt-outline"
+                      title="分享"
+                    />
                   </div>
                   <div class="post-control reply">
-                    <Icon type="ios-text-outline" title="回复" />
+                    <Icon
+                      type="ios-text-outline"
+                      title="回复"
+                    />
                   </div>
                   <div class="post-control like">
-                    <Icon type="ios-heart-outline" title="喜欢" />
+                    <Icon
+                      type="ios-heart-outline"
+                      title="喜欢"
+                    />
                   </div>
                 </div>
               </div>
@@ -69,8 +112,16 @@
           </div>
           <div class="post-avatar post-avatar-sticky">
             <div class="post-avatar-wrapper">
-              <a class="post-avatar-img post-avatar-link" href="">
-                <img :src="item.user_avatar" width="50" height="50" alt="">
+              <a
+                class="post-avatar-img post-avatar-link"
+                href=""
+              >
+                <img
+                  :src="item.user_avatar"
+                  width="50"
+                  height="50"
+                  alt=""
+                >
               </a>
             </div>
           </div>
@@ -84,27 +135,38 @@
 <script lang="ts">
 import { articleJson } from "@/assets/json/homeJson";
 import { Component, Vue } from "vue-property-decorator";
-import ApiService from '@/services';
+import ApiService from "@/services";
 // import store from '@/vuex/index';
 // import {mapMutations} from 'vuex';
 @Component
 export default class ArticlePage extends Vue {
   constructor() {
-    super(); 
+    super();
   }
-  page:string = "1"
-  limit:string="10"
+  page: string = "1";
+  limit: string = "10";
   /**
    * articleJson  文章列表
    * asideJson    侧 边 栏
    * footerJson   页面底部
    */
   articleJson: Array<object> = articleJson;
-  listData: Array<object> = [];
+  // : Array<object> = [];
+  data() {
+    return {
+      listData: [],
+      page: 1
+    };
+  }
   maxLen: number = 10;
   minLen: number = 0;
+
   created(): void {
-    this.GetTopics()
+    this.GetTopics();
+    // 加载更多
+    window.addEventListener("scroll", this.Scroll, true);
+    // 加载更多
+
     // if (articleJson.length < 10) {
     //   this.maxLen = articleJson.length;
     // } else {
@@ -113,16 +175,41 @@ export default class ArticlePage extends Vue {
     // this.listData = articleJson.slice(this.minLen, this.maxLen);
     // return this.$store.state.attention;
   }
-  GetTopics (){
+  Scroll() {
+    var scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    var windowHeight =
+      document.documentElement.clientHeight || document.body.clientHeight;
+    var scrollHeight = document.body.scrollHeight;
+    console.log(scrollTop + windowHeight, scrollHeight);
+    if (scrollTop + windowHeight == scrollHeight) {
+      console.log("开始加载吧");
+      // if (this.page <= this.totalPage) {
+      //   this.getList();
+      this.GetTopics();
+      // }
+    }
+  }
+  // 取消加载更多监听事件
+  destroyed() {
+    window.removeEventListener("scroll", this.Scroll, true);
+  }
+  GetTopics() {
+    console.log(this.$data.page);
     ApiService.GetTopics({
-      page:this.page,
-      limit:this.limit,
-    })
-    .then((res:any)=>{
-      // console.log(res)
-        this.listData =res.list
-        this.page = res.page+1;
-    })
+      page: this.$data.page
+      // limit: this.limit
+    }).then((res: any) => {
+      console.log(res);
+      // 判断是不是最后一页了, 如果是最后一页了,什么都不做
+      if (res.count <= res.page * res.limit) {
+        return;
+      }
+      // this.listData = [...this.listData,...res.list]
+      this.$data.listData = [...this.$data.listData, ...res.list];
+      this.$data.page = res.page + 1;
+      // console.log(  this.$data.page)
+    });
   }
   handleAttention(obj: any, idx: number): void {
     this.articleJson.splice(
@@ -133,18 +220,18 @@ export default class ArticlePage extends Vue {
     //这里的home模块的store改写为带有命名空间的store,来自Amanda修改
     this.$store.commit("home/handleAttention", obj);
   }
-  handleReachBottom() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        this.maxLen += this.maxLen;
-        this.listData = articleJson.slice(this.minLen, this.maxLen);
-        if (this.listData.length == articleJson.length) {
-          alert("无更多数据！");
-        }
-        resolve();
-      }, 2000);
-    });
-  }
+  // handleReachBottom() {
+  //   return new Promise(resolve => {
+  //     setTimeout(() => {
+  //       this.maxLen += this.maxLen;
+  //       this.listData = articleJson.slice(this.minLen, this.maxLen);
+  //       if (this.listData.length == articleJson.length) {
+  //         alert("无更多数据！");
+  //       }
+  //       resolve();
+  //     }, 2000);
+  //   });
+  // }
 }
 </script>
 <style lang="scss" scoped>
@@ -154,9 +241,9 @@ article {
     padding: 0;
     .post-container {
       margin: 0 0 20px 0;
-      transition: all .3s ease-in-out;
-      &:hover{
-        box-shadow: 0 2px 5px rgba(0,0,0,.1);
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
     }
     .post-full {

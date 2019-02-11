@@ -24,8 +24,10 @@ export default class ApiService {
 
     // 帖子
     // 得到全部的帖子
-    static GetTopics(params:TopicList) {
-        return http.get(apis.topics)
+    static GetTopics(topicList:TopicList) {
+        return http.get(apis.topics,{
+            params:topicList
+        })
     }
     // 得到具体的某一个帖子
     static GetTopicsById(topicID: string) {
