@@ -9,7 +9,7 @@
       >
         <div class="post-full">
           <div class="post-wrapper">
-            <div class="post-header">
+            <!-- <div class="post-header">
               <div class="post-author-info clearfix">
                 <div class="post-info-name clearfix">
                   <a href="">{{item.name}}</a>
@@ -25,11 +25,14 @@
                   </a>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="post-content clearfix">
               <div class="post-picture">
                 <a href="">
-                  <img :src="item.img" />
+                  <img 
+                  :src="item.img?item.img:require('@/assets/imgs/go.png')"     
+                  width="100"
+                  height="100" />
                 </a>
               </div>
               <div class="post-list">
@@ -76,7 +79,7 @@
                 </div>
               </div>
             </div>
-            <div class="post-footer clearfix">
+            <!-- <div class="post-footer clearfix">
               <div class="post-heat">
                 <div class="post-heat-count">
                   <span
@@ -109,7 +112,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="post-avatar post-avatar-sticky">
             <div class="post-avatar-wrapper">
@@ -117,12 +120,18 @@
                 class="post-avatar-img post-avatar-link"
                 href=""
               >
-                <img
-                  :src="item.user_avatar"
+               <img
+                  :src="require('@/assets/imgs/go.png')"
                   width="50"
                   height="50"
                   alt=""
                 >
+                <!-- <img
+                  :src="item.user_avatar"
+                  width="50"
+                  height="50"
+                  alt=""
+                > -->
               </a>
             </div>
           </div>
@@ -273,9 +282,11 @@ article {
           float: right;
           height: 150px;
           img {
+        // overflow: hidden;
+
             border-radius: 2px;
-            height: 100%;
-            width: 100%;
+            // height: 100%;
+            // width: 100%;
             overflow: hidden;
             object-fit: cover;
             background-size: cover;

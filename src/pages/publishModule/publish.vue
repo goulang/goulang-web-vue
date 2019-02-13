@@ -22,6 +22,7 @@
             </a>
           </div>
         </Col>
+<!--         
         <Col span="6">
           <div class="publish-type-item">
             <a class="publish-wrap" href="javascript:0;">
@@ -63,7 +64,7 @@
               </div>
             </a>
           </div>
-        </Col>
+        </Col> -->
       </Row>
     </Modal>
   </div>

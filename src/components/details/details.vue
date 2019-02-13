@@ -45,7 +45,7 @@
         </div>
       </article>
       <aside class="w--25">
-        <div class="user-info">
+        <!-- <div class="user-info">
           <div class="user-header">
             <div class="user-title">
               <div class="user-avatar">
@@ -87,9 +87,9 @@
               <Button type="success">关注</Button>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- 相关文章 -->
-        <div class="relate">
+        <!-- <div class="relate">
           <Card
             :padding="15"
             dis-hover
@@ -117,7 +117,7 @@
               <em>mengh - 1k阅读</em>
             </p>
           </Card>
-        </div>
+        </div> -->
       </aside>
     </main>
   </div>

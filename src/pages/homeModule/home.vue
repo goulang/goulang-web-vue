@@ -15,7 +15,7 @@
       </Col>
       <main>
         <ArticleList />
-        <AsideBar />
+        <!-- <AsideBar /> -->
       </main>
     </Row>
   </div>

@@ -76,7 +76,7 @@
             <Dropdown>
               <a href="javascript:void(0)">
                 <img
-                  src="@/assets/imgs/logo.jpg"
+                  src="@/assets/imgs/go.png"
                   alt=""
                 >
               </a>
@@ -98,12 +98,12 @@
             icon="ios-paper-outline"
             ghost
           >发布</Button>
-          <Button
+          <!-- <Button
             @click="showContent('inform')"
             shape="circle"
             title="通知"
             icon="ios-notifications-outline"
-          ></Button>
+          ></Button> -->
         </div>
         </Col>
       </Row>
@@ -214,6 +214,7 @@ export default class Appheader extends Vue {
 
   //用户头像下面的列表跳转
   handleUserList(item: any, idx: number): void {
+    
     // console.log(item["name"])
     this.navStyle(-1);
     this.pushRouter(item["name"]);
