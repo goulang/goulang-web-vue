@@ -1,7 +1,7 @@
 export const baseURL = "http://localhost:8080/" 
-// export const apiPrefix = "api/"
+// export const apiPrefix = ""
 // const apiPrefix = "/"
-// const prefix = baseURL + apiPrefix
+// export const prefix = baseURL + apiPrefix
 export const prefix = baseURL    
 export default {
     BASE_URL:prefix,

@@ -78,8 +78,8 @@ export default class RegisterPage extends Vue {
   data() {
     return {
       formValidate: {
-        email: "891177434@qq.com",
-        password: "123456"
+        email: "",
+        password: ""
       },
       ruleValidate: {
         email: [

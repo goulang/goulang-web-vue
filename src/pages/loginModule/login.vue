@@ -92,8 +92,8 @@ export default class LoginPage extends Vue {
       timer: null,
       upLoading: false,
       formValidate: {
-        email: "891177434@qq.com",
-        password: "123456"
+        email: "",
+        password: ""
       },
       ruleValidate: {
         email: [
