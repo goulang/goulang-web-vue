@@ -29,17 +29,18 @@
             <div class="post-content clearfix">
               <div class="post-picture">
                 <a href="">
-                  <img 
-                  :src="item.img?item.img:require('@/assets/imgs/go.png')"     
-                  width="100"
-                  height="100" />
+                  <img
+                    :src="item.img?item.img:require('@/assets/imgs/go.png')"
+                    width="100"
+                    height="100"
+                  />
                 </a>
               </div>
               <div class="post-list">
                 <div class="post-list-item">
                   <div class="post-list-item-title">
                     <h3
-                    @click="openDetail(item)"
+                      @click="openDetail(item)"
                       v-if="item.title.length >= '55'"
                       class="truncate-lines truncate-lines-2"
                       dir="auto"
@@ -50,7 +51,7 @@
                       >{{item.title}}</span>
                     </h3>
                     <h3
-                    @click="openDetail(item)"
+                      @click="openDetail(item)"
                       v-else
                       dir="auto"
                     >
@@ -120,7 +121,7 @@
                 class="post-avatar-img post-avatar-link"
                 href=""
               >
-               <img
+                <img
                   :src="require('@/assets/imgs/go.png')"
                   width="50"
                   height="50"
@@ -153,8 +154,8 @@ export default class ArticlePage extends Vue {
   constructor() {
     super();
   }
-  page: string = "1";
-  limit: string = "10";
+  // page: string = "1";
+  // limit: string = "10";
   /**
    * articleJson  文章列表
    * asideJson    侧 边 栏
@@ -165,7 +166,9 @@ export default class ArticlePage extends Vue {
   data() {
     return {
       listData: [],
-      page: 1
+      page: 1,
+      limit: 10,
+      isLastPage: false
     };
   }
   maxLen: number = 10;
@@ -205,28 +208,48 @@ export default class ArticlePage extends Vue {
     window.removeEventListener("scroll", this.Scroll, true);
   }
   GetTopics() {
+     if(this.$data.isLastPage) {
+       console.log("最后一页了")
+        return
+      }
     // console.log(this.$data.page);
     ApiService.GetTopics({
-      page: this.$data.page
-      // limit: this.limit
+      page: this.$data.page,
+      limit: this.$data.limit
     }).then((res: any) => {
       // console.log(res);
       // 判断是不是最后一页了, 如果是最后一页了,什么都不做
-      if (res.count <= res.page * res.limit) {
-        return;
+      // 判断是不是最后一页并输出
+      // 	isLastPage := false
+ 
+      // 如果得到的列表小于限制行数,那么就是最后一页了,把是不是最后一页设置一下为true
+      if (res.list.length < this.$data.limit) {
+        this.$data.isLastPage = true;
+        console.log("1. 最后一页设置一下为true")
+        // 如果得到的列表等于限制行数,
+        // 那么判断一下 (当前页数*限制行数)是不是等于总共的文章数目
+      }else if(res.list.length == this.$data.limit){
+        if(this.$data.page*this.$data.limit == res.count){
+          // 如果相等了,那么设置为最后一页为true
+               this.$data.isLastPage = true;
+               console.log("2. 最后一页设置一下为true")
+        }else{
+          this.$data.isLastPage = false;
+        }
+      }else{
+
       }
-      // this.listData = [...this.listData,...res.list]
+     
       this.$data.listData = [...this.$data.listData, ...res.list];
       this.$data.page = res.page + 1;
-      // console.log(  this.$data.page)
     });
   }
   // 打开内容详情页面
-  openDetail (item:any) {
-    console.log(item)
+  openDetail(item: any) {
+    // console.log(item)
     this.$router.push({
-      path:`/d/${item.id}`
-    })
+      path: `/d/${item.id}`
+    });
   }
   handleAttention(obj: any, idx: number): void {
     this.articleJson.splice(
@@ -282,7 +305,7 @@ article {
           float: right;
           height: 150px;
           img {
-        // overflow: hidden;
+            // overflow: hidden;
 
             border-radius: 2px;
             // height: 100%;
@@ -440,7 +463,7 @@ article {
           .title-curs {
             cursor: pointer;
             &:hover {
-             color: #f60;
+              color: #f60;
             }
           }
         }

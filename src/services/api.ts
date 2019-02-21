@@ -1,4 +1,4 @@
-export const baseURL = "http://localhost:8080/" 
+export const baseURL = "http://www.goulang.org:8080/" 
 // export const apiPrefix = ""
 // const apiPrefix = "/"
 // export const prefix = baseURL + apiPrefix

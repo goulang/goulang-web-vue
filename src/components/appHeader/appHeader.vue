@@ -237,7 +237,10 @@ export default class Appheader extends Vue {
   logout() {
     // console.log(1)
   
-      Cookie.remove('goulang');
+      Cookie.remove('goulang',{
+        	domain: "goulang.org",
+   
+    });
     // this.$store.commit("login/toggleIsLogin",true)
   }
   //通知
