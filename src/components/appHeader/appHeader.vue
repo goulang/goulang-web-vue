@@ -59,7 +59,7 @@
             shape="circle"
             class="sign-in"
             @click="showContent('login')"
-          >登陆</Button>
+          >登录</Button>
           <Button
             type="dashed"
             icon="md-add"
