@@ -29,6 +29,7 @@ module.exports = {
 
     devServer: {
         port: 9000,
+        disableHostCheck: true,
 
         // proxy: {
         //     '/api/': {
